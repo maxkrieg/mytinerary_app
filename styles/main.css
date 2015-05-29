@@ -1,0 +1,30 @@
+/********************
+POSITIONING
+********************/
+
+#main {
+  height: 100%;
+}
+
+#leftbar {
+  height: 100%;
+}
+
+
+
+
+
+
+
+
+/********************
+STYLING
+********************/
+
+#main {
+  background-color: lightgrey;
+}
+
+#leftbar {
+  background-color: lightblue;
+}
