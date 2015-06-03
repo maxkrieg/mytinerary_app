@@ -54,8 +54,8 @@
   var $itineraryHeader = $('#itinerary-header-name');
 
 
-  var renderItineraryName = function (selectedItineraryName) {
-    return '<h2>' + selectedItineraryName + '</h2>';
+  var renderItineraryName = function (selectedItineraryName, $selectedItineraryId) {
+    return '<h2>' + selectedItineraryName + ' "data-itinerary-id=' + $selectedItineraryId + ' "</h2>';
   };
 
   // Click Handler for Itinerary List Item
@@ -76,7 +76,7 @@
       $itineraryHeader.html("");
 
       // Render Itinerary Main View Header with selected Itinerary Name
-      $itineraryHeader.append(renderItineraryName(selectedItineraryName));
+      $itineraryHeader.append(renderItineraryName(selectedItineraryName, $selectedItineraryId));
 
 
     // Itinerary Events
