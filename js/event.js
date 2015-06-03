@@ -20,13 +20,14 @@
   };
 
   // Handler Function for GETTING events from database
-  var getItineraryHandler = function(selectedItineraryUrl){
+  var getEventsHandler = function(selectedItineraryUrl){
     $.ajax({
       url: selectedItineraryUrl,
       type: 'GET',
     })
     .done(function(response) {
       console.log("success: got all events");
+      $itineraryEvents.html("");
       var eventsList = renderItineraryEvents(response);
       $itineraryEvents.append(eventsList);
     })
@@ -74,9 +75,13 @@
       attendees: $eventAttendeesInput.val(),
       desc: $eventDescInput.val()
     }};
+
+    var itineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
+    var selectedEventsUrl = 'http://localhost:3000/itineraries/' + itineraryId + '/events';
+
     // POST that value to database in events table
     $.ajax({
-      url: selectedItineraryUrl,
+      url: selectedEventsUrl,
       type: 'POST',
       dataType: 'json',
       data: eventData,
@@ -84,7 +89,7 @@
     // Once complete, run the itineraryListHandler function to render updated list of itineraries
     .done(function() {
       console.log('success: POSTed new event')
-      getItineraryHandler();
+      getEventsHandler(selectedEventsUrl);
       $allInputForms.val("");
     })
     .fail(function() {

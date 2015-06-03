@@ -55,8 +55,10 @@
 
 
   var renderItineraryName = function (selectedItineraryName, $selectedItineraryId) {
-    return '<h2>' + selectedItineraryName + ' "data-itinerary-id=' + $selectedItineraryId + ' "</h2>';
+    var itineraryHeader = '<h2 data-itinerary-id=' + $selectedItineraryId + '>' + selectedItineraryName + '</h2>';
+    return itineraryHeader;
   };
+
 
   // Click Handler for Itinerary List Item
   $itinerariesList.on('click', $itineraryListItem, function(){
@@ -75,15 +77,21 @@
       // Clear Itinerary Main View Header
       $itineraryHeader.html("");
 
-      // Render Itinerary Main View Header with selected Itinerary Name
-      $itineraryHeader.append(renderItineraryName(selectedItineraryName, $selectedItineraryId));
+    // Getting and Rendering Events: Jumps into event file
 
-
-    // Itinerary Events
+    // Grab the ID value of selected Itinerary
     var $selectedItineraryId = ($(event.target).attr('data-itinerary'));
+
+    // Render Itinerary Main View Header with selected Itinerary Name
+    $itineraryHeader.append(renderItineraryName(selectedItineraryName, $selectedItineraryId));
+
+    console.log($selectedItineraryId);
+    // Insert that ID into the URL
     var selectedItineraryUrl = 'http://localhost:3000/itineraries/' + $selectedItineraryId + '/events';
+    // Clear the div element
     $itineraryEvents.html("");
-    getItineraryHandler(selectedItineraryUrl);
+    // Insert events: Jump to Event file to render events
+    getEventsHandler(selectedItineraryUrl);
 
   });
 

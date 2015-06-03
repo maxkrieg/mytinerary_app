@@ -50,11 +50,12 @@ POSITIONING
 }
 
 /* Leftbar 1: Itinerary List */
+
 #itineraries-list-header {
   margin-top: 20px;
 }
 
-#new-itinerary-btn {
+#itinerary-create-btn {
   margin-bottom: 20px;
 }
 

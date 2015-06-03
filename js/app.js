@@ -18,9 +18,13 @@ $(document).ready(function(){
     $('#leftbar-create-event').show();
   });
 
-  // Click Handler for Submit Button on Create Event Form
-  // Hides Create Event Form and Shows Itinerary List
+  // Click Handlers for Submit/Cancel Event Create Buttons
   $('#event-submit-btn').click(function(){
+    $('#leftbar-create-event').hide();
+    $('#leftbar-itineraries-list').show();
+  });
+
+  $('#event-cancel-btn').click(function(){
     $('#leftbar-create-event').hide();
     $('#leftbar-itineraries-list').show();
   });
