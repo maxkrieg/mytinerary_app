@@ -2,7 +2,7 @@
 // MyTinerary.Event = (function(){})();
 
 ///////////////////////////////////////////////////////////////////////////////////
-// USER STORY: Get events and display in itinerary main view
+// USER STORY: Get events for specific itinerary and display in itinerary main view
 ///////////////////////////////////////////////////////////////////////////////////
 
   // Set Event template DOM element to variable
@@ -20,9 +20,9 @@
   };
 
   // Handler Function for GETTING events from database
-  var getItineraryHandler = function(selectedItineraryUrl){
+  var getItineraryHandler = function(selectedEventsUrl){
     $.ajax({
-      url: selectedItineraryUrl,
+      url: selectedEventsUrl,
       type: 'GET',
     })
     .done(function(response) {
@@ -83,7 +83,7 @@
     })
     // Once complete, run the itineraryListHandler function to render updated list of itineraries
     .done(function() {
-      console.log('success: POSTed new event')
+      console.log('success: POSTed new event');
       getItineraryHandler();
       $allInputForms.val("");
     })

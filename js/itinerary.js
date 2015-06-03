@@ -87,7 +87,29 @@
 
   });
 
+////////////////////////////////////////////////////////////////
 // USER STORY: Delete itinerary when delete button pressed
+////////////////////////////////////////////////////////////////
+
+  var deleteItineraryHandler = function(itineraryUrl){
+    $.ajax({
+      url: itineraryUrl,
+      type: 'DESTROY',
+      dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+      data: {param1: 'value1'},
+    })
+    .done(function() {
+      console.log("success: deleted itinerary");
+    })
+    .fail(function() {
+      console.log("error");
+    });
+  };
+
+  $button.click(function(){
+    deleteItineraryHandler(selectedItineraryUrl);
+    getItineraryListHandler();
+  });
 // USER STORY: Rename itinerary when Rename button pressed
 // USER STORY: Pull up Create New Event leftbar when Add Event button pressed
 
