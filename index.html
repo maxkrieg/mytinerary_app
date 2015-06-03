@@ -7,200 +7,162 @@
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/responsive.css">
 
 </head>
 <body>
 
-<div class="container">
-
+  <!-- PAGE HEADER -->
   <div class="page-header">
     <h1>mytinerary <small>make the perfect plan.</small></h1>
   </div>
 
-  <div class="row">
+  <div class="container">
 
-    <div id="leftbar-create-event" class="leftbar col-md-3">
-      <h4 id="create-event-header">Create New Event</h4>
-      <form>
+    <div class="row">
+
+      <!-- LEFTBAR 1: ITINERARY LIST -->
+      <div id="leftbar-itineraries-list" class="leftbar col-md-3">
+        <h3 id="itineraries-list-header">Itineraries</h3>
+
+        <!-- Form for adding new Itinerary -->
         <div class="form-group">
-          <label for="event-title">Event Title</label>
-          <input type="" class="form-control" id="event-title" placeholder="Enter title">
+            <label for="event-title">Add Itinerary</label>
+            <input type="" class="form-control" id="itinerary-name" placeholder="Itinerary Name">
         </div>
-        <div class="form-group">
-          <label for="event-date">Date</label>
-          <input type="" class="form-control date-picker" id="event-date" placeholder="Date">
-        </div>
-        <div class="form-group">
-          <label for="end-time">Start Time</label>
-          <input type="" class="form-control" id="start-time" placeholder="Start Time">
-        </div>
-        <div class="form-group">
-          <label for="end-time">End Time</label>
-          <input type="" class="form-control" id="end-time" placeholder="End Time">
-        </div>
-        <div class="form-group">
-          <label for="location">Location</label>
-          <input type="" class="form-control" id="location" placeholder="Location">
-        </div>
-        <div class="form-group">
-          <label for="attendees">Attendees</label>
-          <input type="" class="form-control" id="attendees" placeholder="Attendees">
-        </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea class="form-control" rows="3"></textarea>
+        <button type="Create" class="btn btn-default" id="itinerary-create-btn">Create</button>
+
+        <!-- Sample Itinerary List-->
+     <!--    <div class="list-group"> -->
+          <!-- Can add 'active' class to for selected styling -->
+       <!--    <a href="#" class="list-group-item">Placeholder Itinerary</a>
+        </div> -->
+
+        <!-- Template Itinerary List -->
+        <div id="itinerary-list" class="list-group">
         </div>
 
-        <div class="form-group">
-          <label for="upload-image">Upload Event Image</label>
-          <input type="file" id="upload-image">
-          <p class="help-block">Example block-level help text here.</p>
+
+
+      </div>
+
+      <!-- LEFTBAR 2: NEW EVENT FORM -->
+      <div id="leftbar-create-event" class="leftbar col-md-3">
+        <h4 id="create-event-header">Create New Event</h4>
+        <form>
+          <div class="form-group">
+            <label for="event-title">Event Title</label>
+            <input type="" class="form-control create-event-input" id="event-title" placeholder="Enter title">
+          </div>
+          <div class="form-group">
+            <label for="event-date">Date</label>
+            <input type="" class="form-control create-event-input" id="event-date" placeholder="Date">
+          </div>
+          <div class="form-group">
+            <label for="end-time">Start Time</label>
+            <input type="" class="form-control create-event-input" id="start-time" placeholder="Start Time">
+          </div>
+          <div class="form-group">
+            <label for="end-time">End Time</label>
+            <input type="" class="form-control create-event-input" id="end-time" placeholder="End Time">
+          </div>
+          <div class="form-group">
+            <label for="location">Location</label>
+            <input type="" class="form-control create-event-input" id="location" placeholder="Location">
+          </div>
+          <div class="form-group">
+            <label for="attendees">Attendees</label>
+            <input type="" class="form-control create-event-input" id="attendees" placeholder="Attendees">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control create-event-input" rows="3" id="desc"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="upload-image">Upload Event Image</label>
+            <input type="file" id="upload-image">
+            <p class="help-block">Image size must be less than 100MB.</p>
+          </div>
+          <button type="submit" class="btn btn-default" id="event-submit-btn">Submit</button>
+        </form>
+      </div>
+
+
+      <!-- MAIN: FULL ITINERARY VIEW -->
+      <div id="main" class="col-md-9">
+
+        <!-- Button Grouping -->
+        <div id="itinerary-btn-container">
+          <div class="btn-group" role="group" aria-label="..." id="itinerary-btns">
+            <button type="button" class="btn btn-default" id="add-event-btn">Add Event</button>
+            <button type="button" class="btn btn-default" id="edit-name-btn">Rename</button>
+            <button type="button" class="btn btn-default" id="delete-itinerary-btn">Delete</button>
+          </div>
+
+          <div class="input-group" id="rename-itinerary-container">
+            <input type="text" class="form-control" placeholder="New Itinerary Name" id="rename-itinerary">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" id="rename-submit-btn">Submit</button>
+            </span>
+          </div>
         </div>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox"> Check me out
-          </label>
+
+
+
+        <div id="itinerary-container">
+
+          <!-- Sample Full Itinerary View-->
+          <!-- <h2>Sample Itinerary Title</h2>
+
+            <div class="list-group">
+
+                <a href="#" class="list-group-item">
+                  <h4 class="list-group-item-heading">Sample Event Title</h4>
+                  <div class="media-left">
+                      <img class="media-object" src="http://placehold.it/100x100" alt="...">
+                  </div>
+                  <h5>Date and Time</h5>
+                  <h5>Location</h5>
+                  <h5>Attendees: Sample attendees list</h5>
+
+                  <p class="list-group-item-text">XOXO cronut brunch mlkshk, pork belly Odd Future trust fund umami. Migas you probably haven't heard of them Williamsburg leggings. Drinking vinegar iPhone mustache, twee mixtape readymade Helvetica chambray. Paleo polaroid Schlitz photo booth blog. Sartorial Truffaut butcher, paleo chia synth XOXO organic. Jean shorts DIY you probably haven't heard of them distillery, deep v kale chips Kickstarter meggings occupy narwhal Helvetica authentic dreamcatcher roof party. Craft beer seitan Carles gluten-free messenger bag, hella Kickstarter chillwave selvage letterpress Brooklyn kale chips bespoke locavore ennui.</p>
+
+                  <div class="btn-group" role="group" aria-label="..." id="event-btns">
+                    <button type="button" class="btn btn-default" id="edit-event-btn">Edit Event</button>
+                    <button type="button" class="btn btn-default" id="delete-event-btn">Delete Event</button>
+                  </div>
+                </a>
+
+            </div> -->
+            <!-- End Sample Full Itinerary View -->
+
+            <!-- Template Full Itinerary View -->
+            <div id="itinerary-header-name">
+              <h2>Select an Itinerary from Left to View</h2>
+            </div>
+            <div class="list-group" id="itinerary-body-events">
+              <div id="current-event">
+              </div>
+            </div>
+
+        <!-- Closing for itinerary container -->
         </div>
-        <button type="submit" class="btn btn-default" id="submit-btn">Submit</button>
-      </form>
+
+
+      <!-- Closing tag for #main div -->
+      </div>
+
+    <!-- Closing tag for #row div -->
     </div>
 
-
-    <div id="leftbar-itineraries-list" class="leftbar col-md-3">
-      <h3 id="itineraries-list-header">Itineraries</h3>
-      <div class="list-group">
-        <!-- Can add 'active' class to for selected styling -->
-        <a href="#" class="list-group-item">Trip to Boston</a>
-        <a href="#" class="list-group-item">Ireland Vacation</a>
-        <a href="#" class="list-group-item">Disney</a>
-        <a href="#" class="list-group-item">Weekend in Chicago</a>
-        <a href="#" class="list-group-item">Italy Tour</a>
-      </div>
-      <div class="form-group">
-          <label for="event-title">Add Itinerary</label>
-          <input type="" class="form-control" id="event-title" placeholder="Itinerary Name">
-      </div>
-      <button type="" class="btn btn-default" id="new-itinerary-btn">Create</button>
-
-
-    </div>
-
-
-
-
-
-
-
-
-    <div id="main" class="col-md-9">
-      <div>
-        <h2>Trip to Boston</h2>
-        <div class="btn-group" role="group" aria-label="..." id="itinerary-btns">
-          <button type="button" class="btn btn-default" id="add-event-btn">Add Event</button>
-          <button type="button" class="btn btn-default" id="edit-name-btn">Rename</button>
-          <button type="button" class="btn btn-default" id="delete-itinerary-btn">Delete</button>
-        </div>
-      </div>
-
-      <div class="list-group">
-          <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading">List group item heading: Event Title</h4>
-            <div class="media-left">
-                <img class="media-object" src="http://placehold.it/100x100" alt="...">
-            </div>
-            <h5>Date and Time</h5>
-            <h5>Location</h5>
-            <h5>Attendees: Max, Jillian, Sam, Joe, Alice.</h5>
-
-            <p class="list-group-item-text">XOXO cronut brunch mlkshk, pork belly Odd Future trust fund umami. Migas you probably haven't heard of them Williamsburg leggings. Drinking vinegar iPhone mustache, twee mixtape readymade Helvetica chambray. Paleo polaroid Schlitz photo booth blog. Sartorial Truffaut butcher, paleo chia synth XOXO organic. Jean shorts DIY you probably haven't heard of them distillery, deep v kale chips Kickstarter meggings occupy narwhal Helvetica authentic dreamcatcher roof party. Craft beer seitan Carles gluten-free messenger bag, hella Kickstarter chillwave selvage letterpress Brooklyn kale chips bespoke locavore ennui.</p>
-
-            <div class="btn-group" role="group" aria-label="..." id="event-btns">
-              <button type="button" class="btn btn-default" id="edit-event-btn">Edit Event</button>
-              <button type="button" class="btn btn-default" id="delete-event-btn">Delete Event</button>
-            </div>
-          </a>
-
-          <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading">List group item heading: Event Title</h4>
-            <div class="media-left">
-                <img class="media-object" src="http://placehold.it/100x100" alt="...">
-            </div>
-            <h5>Date and Time</h5>
-            <h5>Location</h5>
-            <h5>Attendees: Max, Jillian, Sam, Joe, Alice.</h5>
-
-            <p class="list-group-item-text">XOXO cronut brunch mlkshk, pork belly Odd Future trust fund umami. Migas you probably haven't heard of them Williamsburg leggings. Drinking vinegar iPhone mustache, twee mixtape readymade Helvetica chambray. Paleo polaroid Schlitz photo booth blog. Sartorial Truffaut butcher, paleo chia synth XOXO organic. Jean shorts DIY you probably haven't heard of them distillery, deep v kale chips Kickstarter meggings occupy narwhal Helvetica authentic dreamcatcher roof party. Craft beer seitan Carles gluten-free messenger bag, hella Kickstarter chillwave selvage letterpress Brooklyn kale chips bespoke locavore ennui.</p>
-
-            <div class="btn-group" role="group" aria-label="..." id="event-btns">
-              <button type="button" class="btn btn-default" id="edit-event-btn">Edit Event</button>
-              <button type="button" class="btn btn-default" id="delete-event-btn">Delete Event</button>
-            </div>
-          </a>
-
-          <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading">List group item heading: Event Title</h4>
-            <div class="media-left">
-                <img class="media-object" src="http://placehold.it/100x100" alt="...">
-            </div>
-            <h5>Date and Time</h5>
-            <h5>Location</h5>
-            <h5>Attendees: Max, Jillian, Sam, Joe, Alice.</h5>
-
-            <p class="list-group-item-text">XOXO cronut brunch mlkshk, pork belly Odd Future trust fund umami. Migas you probably haven't heard of them Williamsburg leggings. Drinking vinegar iPhone mustache, twee mixtape readymade Helvetica chambray. Paleo polaroid Schlitz photo booth blog. Sartorial Truffaut butcher, paleo chia synth XOXO organic. Jean shorts DIY you probably haven't heard of them distillery, deep v kale chips Kickstarter meggings occupy narwhal Helvetica authentic dreamcatcher roof party. Craft beer seitan Carles gluten-free messenger bag, hella Kickstarter chillwave selvage letterpress Brooklyn kale chips bespoke locavore ennui.</p>
-
-            <div class="btn-group" role="group" aria-label="..." id="event-btns">
-              <button type="button" class="btn btn-default" id="edit-event-btn">Edit Event</button>
-              <button type="button" class="btn btn-default" id="delete-event-btn">Delete Event</button>
-            </div>
-          </a>
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-
-
+  <!-- Closing tag for #container div -->
   </div>
 
+  <script src="js/app.js" type="text/javascript" charset="utf-8" async defer></script>
+  <script src="js/itinerary_list.js" type="text/javascript" charset="utf-8" async defer></script>
+  <script src="js/itinerary.js" type="text/javascript" charset="utf-8" async defer></script>
+  <script src="js/event.js" type="text/javascript" charset="utf-8" async defer></script>
 
-
-
-
-
-
-</div>
-
-<script src="js/app.js" type="text/javascript" charset="utf-8" async defer></script>
-<script src="js/event.js" type="text/javascript" charset="utf-8" async defer></script>
-<script src="js/itinerary.js" type="text/javascript" charset="utf-8" async defer></script>
 </body>
 </html>

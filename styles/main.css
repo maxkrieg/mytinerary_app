@@ -2,6 +2,12 @@
 POSITIONING
 ********************/
 
+/* Overall Positioning */
+.page-header {
+  height: 100px;
+  padding-left: 30px
+}
+
 .container {
   height: 100%;
 }
@@ -10,39 +16,55 @@ POSITIONING
   height: 100%;
 }
 
+/* Main: Itinerary View */
 #main {
   height: 100%;
 }
 
+#itinerary-btn-container {
+  margin-top: 20px
+}
+
 #itinerary-btns {
   margin-bottom: 5px;
+  float: right;
 }
 
 #event-btns {
   margin-top: 5px;
 }
 
-.leftbar {
-  height: 100%;
-}
-
-#itineraries-list-header {
-  margin-top: 20px;
-}
-
-#create-event-header {
-  margin-top: 30px;
+#rename-itinerary-container {
+  float: right;
+  width: 250px;
+  margin-right: 15px;
 }
 
 .media-left {
   float:left;
 }
 
-#submit-btn {
-  margin-bottom: 20px;
+/* Leftbar: Both */
+.leftbar {
+  height: 100%;
+}
+
+/* Leftbar 1: Itinerary List */
+#itineraries-list-header {
+  margin-top: 20px;
 }
 
 #new-itinerary-btn {
+  margin-bottom: 20px;
+}
+
+
+/* Leftbar 2: Create New Event */
+#create-event-header {
+  margin-top: 30px;
+}
+
+#event-submit-btn {
   margin-bottom: 20px;
 }
 
@@ -52,14 +74,35 @@ POSITIONING
 STYLING
 ********************/
 
+body {
+  background-color: rgba(94, 65, 47, 1.0);
+
+}
+
+.page-header {
+
+}
+
 .container {
-  background-color: lightgrey;
+  background-color: rgba(120, 192, 168, 1.0);
+  border: 3px solid black;
+
 }
 
 #main {
-  background-color: blanchedalmond;
+/*  background-color: blanchedalmond;*/
 }
 
 .leftbar {
-  background-color: lightblue;
+/*  background-color: lightblue;*/
+}
+
+.list-group-item {
+  background-color: rgb(252, 235, 182);
+  color: rgba(94, 65, 47);
+}
+
+.btn {
+  background-color: rgba(94, 65, 47, 1.0);
+  color: rgb(252, 235, 182);
 }
