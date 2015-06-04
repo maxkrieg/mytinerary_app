@@ -1,44 +1,37 @@
 
 $(document).ready(function(){
-  // var itinerary = MyTinerary.Itinerary
 
-  // Hide Itinerary Edit Buttons Until an Itinerary is Selected
+  // Hide certains elements on page load:
   $('#itinerary-btn-container').hide();
-
-  // Hide Leftbar 1: Create Event Form
   $('#leftbar-create-event').hide();
-
-  // Hide Rename Itinerary Form and Submit Button
   $('#rename-itinerary-container').hide();
 
-  // Click Handler for Add Event button
   // Shows Create Event Form, Hides Itinerary List
-  $('#add-event-btn').click(function(){
+  $('#add-event-btn').click(function(e){
+    e.preventDefault();
     $('#leftbar-itineraries-list').hide();
-    $('#leftbar-create-event').show();
+    $('#leftbar-create-event').fadeIn(500);
   });
 
-  // Click Handlers for Submit/Cancel Event Create Buttons
-  $('#event-submit-btn').click(function(){
+  // Show itineraries-list, hide create event form
+  $('#event-submit-btn, #event-cancel-btn').click(function(e){
+    e.preventDefault();
     $('#leftbar-create-event').hide();
-    $('#leftbar-itineraries-list').show();
+    $('#leftbar-itineraries-list').fadeIn(700);
   });
 
-  $('#event-cancel-btn').click(function(){
-    $('#leftbar-create-event').hide();
-    $('#leftbar-itineraries-list').show();
-  });
-
-  // Click Handler for Rename Itinerary Button
-  // Shows Rename Form
-  $('#edit-name-btn').click(function(){
+  // Show Rename Itinerary Form, Hide Other Buttons
+  $('#edit-name-btn').click(function(e){
+    e.preventDefault;
+    $('#itinerary-btns').hide();
     $('#rename-itinerary-container').fadeIn(200);
   });
 
-  // Click Handler for Submit Renamed Itinerary Button
-  // Hides Rename Form
-  $('#rename-submit-btn').click(function(){
-    $('#rename-itinerary-container').fadeOut(400);
+  // Hide Rename Itinerary Form, Show Other Buttons
+  $('#rename-submit-btn').click(function(e){
+    e.preventDefault();
+    $('#rename-itinerary-container').hide();
+    $('#itinerary-btns').fadeIn(400);
   });
 
 });

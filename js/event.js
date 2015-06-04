@@ -2,14 +2,14 @@
 // MyTinerary.Event = (function(){})();
 
 ///////////////////////////////////////////////////////////////////////////////////
-// USER STORY: Get events and display in itinerary main view
+// USER STORY: Get events for specific itinerary and show in itinerary main view
 ///////////////////////////////////////////////////////////////////////////////////
 
   // Set Event template DOM element to variable
   var $itineraryEvents = $('#itinerary-body-events');
 
   // Function to format itinerary names correctly (from JSON)
-  var renderItineraryEvents = function (response){
+  var renderEvents = function(response){
     var itineraryEvents = "";
     response.forEach(function(event){
     itineraryEvents +=
@@ -21,15 +21,20 @@
 
   // Handler Function for GETTING events from database
   var getEventsHandler = function(selectedItineraryUrl){
+    $itineraryEvents.html("");
     $.ajax({
       url: selectedItineraryUrl,
       type: 'GET',
     })
     .done(function(response) {
       console.log("success: got all events");
-      $itineraryEvents.html("");
-      var eventsList = renderItineraryEvents(response);
-      $itineraryEvents.append(eventsList);
+      var eventsList = renderEvents(response);
+
+      $itineraryEvents.hide().append(eventsList).fadeIn(800);
+
+
+      // $itineraryEvents.append(eventsList);
+      // $itineraryEvents.fadeIn(300);
     })
     .fail(function() {
       console.log("error");
@@ -77,19 +82,19 @@
     }};
 
     var itineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
-    var selectedEventsUrl = 'http://localhost:3000/itineraries/' + itineraryId + '/events';
+    var selectedItineraryUrl = 'http://localhost:3000/itineraries/' + itineraryId + '/events';
 
     // POST that value to database in events table
     $.ajax({
-      url: selectedEventsUrl,
+      url: selectedItineraryUrl,
       type: 'POST',
       dataType: 'json',
       data: eventData,
     })
     // Once complete, run the itineraryListHandler function to render updated list of itineraries
     .done(function() {
-      console.log('success: POSTed new event')
-      getEventsHandler(selectedEventsUrl);
+      console.log('success: POSTed new event');
+      getEventsHandler(selectedItineraryUrl);
       $allInputForms.val("");
     })
     .fail(function() {
