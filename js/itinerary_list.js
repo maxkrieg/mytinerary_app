@@ -1,11 +1,11 @@
-
-//////////////////////////////////////////////////////////////////////////////////////
-// USER STORY : Display list of user's itineraries in leftbar
-//////////////////////////////////////////////////////////////////////////////////////
+var MyTinerary = MyTinerary || {};
+MyTinerary.ItineraryList = (function(){
+  //////////////////////////////////////////////////////////////////////////////////////
+  // USER STORY : Display list of user's itineraries in leftbar
+  //////////////////////////////////////////////////////////////////////////////////////
 
   // Set DOM element and resource to variables
-  var itinerariesUrl = 'http://localhost:3000/itineraries';
-  var $itinerariesList = $('#itinerary-list');
+  var _allItinerariesUrl = 'http://localhost:3000/itineraries';
 
   // Function to format itinerary names correctly (from JSON)
   var renderItineraryList = function(response){
@@ -17,31 +17,26 @@
   };
 
   // Handler function for GETTING itinerary names from database
-  var getItineraryListHandler = function() {
-      // clear all itineraries in list
-      $itinerariesList.html("");
-
-      // make ajax GET request
-      $.ajax({
-        url: itinerariesUrl,
-        type: 'GET',
-      })
-      .done(function(response) {
-        console.log('success: got all Itinerary Names for Leftbar');
-        // Render itinerary names in list in leftbar
-        var itineraryList = renderItineraryList(response);
-        $itinerariesList.append(itineraryList);
-      })
-      .fail(function() {
-        console.log("error");
-      });
-
-
+  var _getItineraryListHandler = function($itinerariesList) {
+    $itinerariesList.html("");
+    $.ajax({
+      url: _allItinerariesUrl,
+      type: 'GET',
+    })
+    .done(function(response) {
+      console.log('success: got all Itinerary Names for Leftbar');
+      var itineraryList = renderItineraryList(response);
+      $itinerariesList.append(itineraryList);
+    })
+    .fail(function() {
+      console.log("error getting Itinerary names");
+    });
   };
 
-  getItineraryListHandler();
-
-
-
+  return {
+    getItineraryListHandler: _getItineraryListHandler,
+    itinerariesUrl: _allItinerariesUrl
+  };
+})();
 
 

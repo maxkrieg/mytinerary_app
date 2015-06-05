@@ -1,26 +1,23 @@
-// var MyTinerary = MyTinerary || {}
-// MyTinerary.Event = (function(){})();
+var MyTinerary = MyTinerary || {};
+MyTinerary.ItineraryEvents = (function(){
 
-///////////////////////////////////////////////////////////////////////////////////
-// USER STORY: Get events for specific itinerary and show in itinerary main view
-///////////////////////////////////////////////////////////////////////////////////
-
-  // Set Event template DOM element to variable
-  var $itineraryEvents = $('#itinerary-body-events');
+  ///////////////////////////////////////////////////////////////////////////////////
+  // DISPLAY EVENTS (As requested by itinerary)
+  ///////////////////////////////////////////////////////////////////////////////////
 
   // Function to format itinerary names correctly (from JSON)
-  var renderEvents = function(response){
+  var _renderEvents = function(response){
     var itineraryEvents = "";
     response.forEach(function(event){
     itineraryEvents +=
-      '<a href="#" class="list-group-item" data-event="' + event.id + '"><h4 class="list-group-item-heading">'+ event.title + '</h4><div class="media-left"><img class="media-object" src="' + event.image + '" alt="..."></div><h5>Date: ' + event.date + '</h5><h5>Start Time: ' + event.start_time + '</h5><h5>End Time: ' + event.end_time + '</h5><h5>Location: ' + event.location + '</h5><h5>Attendees: ' + event.attendees + '</h5><p class="list-group-item-text">' + event.desc + '</p><div class="btn-group" role="group" aria-label="..." id="event-btns"><button type="button" class="btn btn-default" id="edit-event-btn" data-edit-event="' + event.id + '">Edit Event</button><button type="button" class="btn btn-default" id="delete-event-btn" data-delete-event="' + event.id + '">Delete Event</button></div></a>';
+      '<section class="list-group-item" data-event="' + event.id + '"><h4 class="list-group-item-heading">'+ event.title + '</h4><div class="media-left"><img class="media-object" src="' + event.image + '" alt="..."></div><h5>Date: ' + event.date + '</h5><h5>Start Time: ' + event.start_time + '</h5><h5>End Time: ' + event.end_time + '</h5><h5>Location: ' + event.location + '</h5><h5>Attendees: ' + event.attendees + '</h5><p class="list-group-item-text">' + event.desc + '</p><div class="btn-group btn-group-xs" role="group" aria-label="..." id="event-btns"><button type="button" class="btn btn-default edit-event-btn" data-edit-event="' + event.id + '">Edit Event</button><button type="button" class="btn btn-default delete-event-btn" data-delete-event="' + event.id + '">Delete Event</button></div></section>';
 
     });
     return itineraryEvents;
   };
 
   // Handler Function for GETTING events from database
-  var getEventsHandler = function(selectedItineraryUrl){
+  var _getEventsHandler = function(selectedItineraryUrl, $itineraryEvents){
     $itineraryEvents.html("");
     $.ajax({
       url: selectedItineraryUrl,
@@ -28,84 +25,84 @@
     })
     .done(function(response) {
       console.log("success: got all events");
-      var eventsList = renderEvents(response);
-
+      var eventsList = _renderEvents(response);
       $itineraryEvents.hide().append(eventsList).fadeIn(800);
-
-
-      // $itineraryEvents.append(eventsList);
-      // $itineraryEvents.fadeIn(300);
     })
     .fail(function() {
-      console.log("error");
+      console.log("error getting events");
     });
   };
 
-///////////////////////////////////////////////////////////////////////////////////
-// USER STORY: Create New Event and add to selected itinerary
-///////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////
+  // CREATE NEW EVENT (Add to selected itinerary, submit to DB)
+  ///////////////////////////////////////////////////////////////////////////////////
 
-
-  // Set DOM elements of input fields to internal variables for recurring use
-  var $eventTitleInput = $('#event-title'),
-      $eventDateInput = $('#event-date'),
-      $eventStartInput = $('#start-time'),
-      $eventEndInput = $('#end-time'),
-      $eventLocationInput = $('#location'),
-      $eventAttendeesInput = $('#attendees'),
-      $eventDescInput = $('#desc'),
-      $eventSubmitBtn = $('#event-submit-btn'),
-      $allInputForms = $('.create-event-input');
-
-  /// constructor function for an event
-  var Event = function (title, date, start, end, location, attendees, desc){
-    this.title = title;
-    this.date = date;
-    this.start = start;
-    this.end = end;
-    this.location = location;
-    this.attendees = attendees;
-    this.desc = desc;
-  };
-
-  // When Submit button pressed, capture value from Create Event form fields
-  // Create JSON object using Create method on Event object
-  Event.create = function(){
+  var _createEventHandler = function($eventTitleInput,$eventDateInput,$eventStartInput,$eventEndInput,$eventLocationInput,$eventAttendeesInput,$eventDescInput){
     var eventData = {event: {
-      title: $eventTitleInput.val(),
-      date: $eventDateInput.val(),
-      start: $eventStartInput.val(),
-      end: $eventEndInput.val(),
-      location: $eventLocationInput.val(),
-      attendees: $eventAttendeesInput.val(),
-      desc: $eventDescInput.val()
+      title: $($eventTitleInput).val(),
+      date: $($eventDateInput).val(),
+      start: $($eventStartInput).val(),
+      end: $($eventEndInput).val(),
+      location: $($eventLocationInput).val(),
+      attendees: $($eventAttendeesInput).val(),
+      desc: $($eventDescInput).val(),
+      // image: $imageInput.val()
     }};
-
     var itineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
     var selectedItineraryUrl = 'http://localhost:3000/itineraries/' + itineraryId + '/events';
-
-    // POST that value to database in events table
     $.ajax({
       url: selectedItineraryUrl,
       type: 'POST',
       dataType: 'json',
       data: eventData,
     })
-    // Once complete, run the itineraryListHandler function to render updated list of itineraries
     .done(function() {
       console.log('success: POSTed new event');
-      getEventsHandler(selectedItineraryUrl);
-      $allInputForms.val("");
     })
     .fail(function() {
-      console.log("error");
+      console.log("error POSTing new event");
     });
   };
 
-  // Click handler for submit button
-  $eventSubmitBtn.click(function(e){
-    e.preventDefault();
-    Event.create();
-  });
+  //////////////////////////////////////////////////////////////////////////////////////
+  // GRABBING EVENT AND EVENTS URL
+  //////////////////////////////////////////////////////////////////////////////////////
+  var _getEventUrl = function(target) {
+    var itineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
+    var eventId = $(target).attr('data-delete-event');
+    return 'http://localhost:3000/itineraries/' + itineraryId + '/events/' + eventId;
+  };
 
+  var _getEventsUrl = function(target) {
+    var itineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
+    return 'http://localhost:3000/itineraries/' + itineraryId + '/events';
+  };
+
+  ///////////////////////////////////////////////////////////////////////////////////
+  // DELETE EVENT
+  ///////////////////////////////////////////////////////////////////////////////////
+
+  // Handler for deleting event from DB
+  var _deleteEventHandler = function(target){
+    var eventUrl = _getEventUrl(target);
+    $.ajax({
+      url: eventUrl,
+      type: 'DELETE',
+    })
+    .done(function() {
+      console.log("success: deleted event");
+    })
+    .fail(function() {
+      console.log("error deleting event");
+    });
+  };
+
+  return {
+    getEvents: _getEventsHandler,
+    createEvent: _createEventHandler,
+    getEventUrl: _getEventUrl,
+    getEventsUrl: _getEventsUrl,
+    deleteEvent: _deleteEventHandler
+  };
+})();
 
