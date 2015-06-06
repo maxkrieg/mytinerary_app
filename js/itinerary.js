@@ -55,7 +55,7 @@ MyTinerary.Itinerary = (function(){
   // Handler for deleting itinerary from DB
   var _deleteItineraryHandler = function($itineraryEvents, $itineraryHeader){
 
-    var placeholderHeader = '<h2>Select an Itinerary to View</h2>';
+    var placeholderHeader = '<h2 style="font-family: \'Vollkorn\', serif; font-weight: bold">Select an Itinerary to View</h2>';
 
     $.ajax({
       headers: { Authorization: 'Token token=' + localStorage.getItem('token') },

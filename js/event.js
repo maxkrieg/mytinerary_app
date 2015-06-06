@@ -9,8 +9,17 @@ MyTinerary.ItineraryEvents = (function(){
   var _renderEvents = function(response){
     var itineraryEvents = "";
     response.forEach(function(event){
+      var image = event.image_tag;
+      var finalImage;
+      if (image) {
+        finalImage = '<div class="media-left" style="margin-right: 3px">' + image + '</div>';
+      }
+      else {
+        finalImage = '<span></span>';
+      }
+
     itineraryEvents +=
-      '<section style="border: 1px solid black; border-radius: 3px" class="list-group-item" data-event="' + event.id + '"><h4 class="list-group-item-heading" font-weight: bold">'+ event.title + '</h4><div class="media-left" style="margin-right: 3px">' + event.image_tag + '</div><h5>Date: ' + event.date + '</h5><h5>Start Time: ' + event.start_time + '</h5><h5>End Time: ' + event.end_time + '</h5><h5>Location: ' + event.location + '</h5><h5>Attendees: ' + event.attendees + '</h5><p class="list-group-item-text">' + event.desc + '</p><div class="btn-group btn-group-sm" role="group" aria-label="..." id="event-btns"><button type="button" class="btn btn-default delete-event-btn" data-delete-event="' + event.id + '">Delete Event</button></div></section>';
+      '<section style="border: 1px solid black; border-radius: 3px" class="list-group-item" data-event="' + event.id + '"><h4 class="list-group-item-heading" font-weight: bold">'+ event.title + '</h4>' + finalImage + '<h5>Date: ' + event.date + '</h5><h5>Start Time: ' + event.start_time + '</h5><h5>End Time: ' + event.end_time + '</h5><h5>Location: ' + event.location + '</h5><h5>Attendees: ' + event.attendees + '</h5><p class="list-group-item-text">' + event.desc + '</p><div class="btn-group btn-group-sm" role="group" aria-label="..." id="event-btns"><button type="button" class="btn btn-default delete-event-btn" data-delete-event="' + event.id + '">Delete Event</button></div></section>';
     });
 
     return itineraryEvents;

@@ -155,6 +155,8 @@ body {
 }
 
 .btn {
+  border: none;
+  box-shadow: 2px 2px grey;
   color: white;
 /*  font-weight: bold;*/
   background: rgb(169,3,41); /* Old browsers */
@@ -172,8 +174,15 @@ body {
   color: white;
 }
 
-.btn:active {
-  color: white;
-  background: black;
+.active {
+  background: blue;
 }
+
+img {
+  border: 1px solid black;
+  box-shadow: 2px 2px grey;
+  border-radius: 5px;
+}
+
+
 

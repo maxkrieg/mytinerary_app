@@ -36,7 +36,13 @@ $(document).ready(function(){
         console.log(textStatus);
       });
     });
+    $('#cancel-btn, #x-btn').click(function(e){
+      e.preventDefault();
+      $('#loginModal').removeClass('show');
+    });
   });
+
+
 
   // Hide certains elements on page load:
   $('#itinerary-btn-container').hide();
