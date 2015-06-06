@@ -4,7 +4,39 @@ var itineraryList = MyTinerary.ItineraryList;
 var itinerary = MyTinerary.Itinerary;
 var itineraryEvents = MyTinerary.ItineraryEvents;
 
+
 $(document).ready(function(){
+  $('#main-page').hide();
+
+  $(function(){
+    $('#sign-in').on('click', function(e){
+      e.preventDefault();
+      $.ajax('http://localhost:3000/login',{
+        contentType: 'application/json',
+        processData: false,
+        data: JSON.stringify({
+          credentials: {
+            email: $('#email').val(),
+            password: $('#password').val()
+          }
+        }),
+        dataType: "json",
+        method: "POST"
+      }).done(function(data, textStatus) {
+        localStorage.setItem('token', data.token);
+        localStorage.getItem('token');
+        $('#loginModal').removeClass('show');
+        // Render Itinerary List on Page Load
+        itineraryList.getItineraryListHandler($itinerariesList);
+        $('#itinerary-btn-container').hide();
+        $('#leftbar-create-event').hide();
+        $('#rename-itinerary-container').hide();
+        $('#main-page').show();
+      }).fail(function(jqxhr, textStatus, errorThrown){
+        console.log(textStatus);
+      });
+    });
+  });
 
   // Hide certains elements on page load:
   $('#itinerary-btn-container').hide();
@@ -62,8 +94,7 @@ $(document).ready(function(){
   var $allInputForms = $('.create-event-input');
   var $deleteEventBtn = $('.delete-event-btn');
 
-  // Render Itinerary List on Page Load
-  itineraryList.getItineraryListHandler($itinerariesList);
+
 
   // Show Select Itinerary :: Inserts Itinerary ID into Header
   $itinerariesList.on('click', $itineraryListItem, function(){
@@ -107,15 +138,15 @@ $(document).ready(function(){
   // Submit New Event
   $eventSubmitBtn.click(function(e){
     e.preventDefault();
-    itineraryEvents.createEvent($eventTitleInput,$eventDateInput,$eventStartInput,$eventEndInput,$eventLocationInput,$eventAttendeesInput,$eventDescInput);
+    itineraryEvents.createEvent($eventTitleInput,$eventDateInput,$eventStartInput,$eventEndInput,$eventLocationInput,$eventAttendeesInput,$eventDescInput, $imageInput);
     itineraryEvents.getEvents(itineraryEvents.getEventsUrl(),$itineraryEvents);
-    $allInputForms.val("");
+    setTimeout(function(){$allInputForms.val("");}, 1000);
   });
 
   // Delete Event
   $itineraryEvents.on('click', $deleteEventBtn, function(e){
     e.preventDefault();
     itineraryEvents.deleteEvent(event.target);
-    setTimeout(function(){itineraryEvents.getEvents(itineraryEvents.getEventsUrl(),$itineraryEvents);}, 200);
+    setTimeout(function(){itineraryEvents.getEvents(itineraryEvents.getEventsUrl(),$itineraryEvents);}, 100);
   });
-})();
+});

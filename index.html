@@ -7,18 +7,52 @@
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="styles/main.css">
 
 </head>
 <body>
-
   <!-- PAGE HEADER -->
   <div class="page-header" id="header">
     <h1>mytinerary <small id="subtitle">make the perfect plan.</small></h1>
   </div>
 
-  <div class="container wrapper">
+  <!--login modal-->
+  <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h1 class="text-center">Login</h1>
+        </div>
+        <div class="modal-body">
+            <form class="form col-md-12 center-block">
+              <div class="form-group">
+                <input type="text" class="form-control input-lg" placeholder="Email" id="email">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control input-lg" placeholder="Password" id="password">
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary btn-lg btn-block" id="sign-in">Sign In</button>
+                <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
+              </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <div class="col-md-12">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        </div>
+        </div>
+    </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="container wrapper" id="main-page" style="display: none">
 
     <div class="row">
 
@@ -45,36 +79,36 @@
       <div id="leftbar-create-event" class="leftbar col-sm-3">
         <h4 id="create-event-header">Create New Event</h4>
         <form>
-          <div class="form-group form-group-sm">
+          <div class="form-group form-group-md">
             <label for="event-title">Event Title</label>
             <input type="" class="form-control create-event-input" id="event-title" placeholder="Enter title">
           </div>
-          <div class="form-group form-group-sm">
-            <label for="event-date">Date</label>
-            <input type="" class="form-control create-event-input" id="event-date" placeholder="Date">
+          <div class="form-group form-group-md">
+            <label for="input-date">Date</label>
+            <input type="date" class="form-control create-event-input" id="event-date" placeholder="Date">
           </div>
-          <div class="form-group form-group-sm">
+          <div class="form-group form-group-md">
             <label for="end-time">Start Time</label>
-            <input type="" class="form-control create-event-input" id="start-time" placeholder="Start Time">
+            <input type="time" class="form-control create-event-input" id="start-time" placeholder="Start Time">
           </div>
-          <div class="form-group form-group-sm">
+          <div class="form-group form-group-md">
             <label for="end-time">End Time</label>
-            <input type="" class="form-control create-event-input" id="end-time" placeholder="End Time">
+            <input type="time" class="form-control create-event-input" id="end-time" placeholder="End Time">
           </div>
-          <div class="form-group form-group-sm">
+          <div class="form-group form-group-md">
             <label for="location">Location</label>
             <input type="" class="form-control create-event-input" id="location" placeholder="Location">
           </div>
-          <div class="form-group form-group-sm">
+          <div class="form-group form-group-md">
             <label for="attendees">Attendees</label>
             <input type="" class="form-control create-event-input" id="attendees" placeholder="Attendees">
           </div>
-          <div class="form-group form-group-sm">
+          <div class="form-group form-group-md">
             <label for="description">Description</label>
             <textarea class="form-control create-event-input" rows="3" id="desc"></textarea>
           </div>
 
-          <div class="form-group form-group-sm">
+          <div class="form-group form-group-md">
             <label for="upload-image">Upload Event Image</label>
             <input type="file" id="upload-image">
             <p class="help-block">Image size must be less than 100MB.</p>
@@ -148,7 +182,6 @@
 
   <!-- Closing tag for #container div -->
   </div>
-
 
   <script src="js/itinerary_list.js" type="text/javascript" charset="utf-8" async defer></script>
   <script src="js/itinerary.js" type="text/javascript" charset="utf-8" async defer></script>

@@ -10,7 +10,7 @@ MyTinerary.ItineraryEvents = (function(){
     var itineraryEvents = "";
     response.forEach(function(event){
     itineraryEvents +=
-      '<section class="list-group-item" data-event="' + event.id + '"><h4 class="list-group-item-heading">'+ event.title + '</h4><div class="media-left"><img class="media-object" src="' + event.image + '" alt="..."></div><h5>Date: ' + event.date + '</h5><h5>Start Time: ' + event.start_time + '</h5><h5>End Time: ' + event.end_time + '</h5><h5>Location: ' + event.location + '</h5><h5>Attendees: ' + event.attendees + '</h5><p class="list-group-item-text">' + event.desc + '</p><div class="btn-group btn-group-xs" role="group" aria-label="..." id="event-btns"><button type="button" class="btn btn-default edit-event-btn" data-edit-event="' + event.id + '">Edit Event</button><button type="button" class="btn btn-default delete-event-btn" data-delete-event="' + event.id + '">Delete Event</button></div></section>';
+      '<section class="list-group-item" data-event="' + event.id + '"><h4 class="list-group-item-heading">'+ event.title + '</h4><div class="media-left">' + event.image_tag + '</div><h5>Date: ' + event.date + '</h5><h5>Start Time: ' + event.start_time + '</h5><h5>End Time: ' + event.end_time + '</h5><h5>Location: ' + event.location + '</h5><h5>Attendees: ' + event.attendees + '</h5><p class="list-group-item-text">' + event.desc + '</p><div class="btn-group btn-group-xs" role="group" aria-label="..." id="event-btns"><button type="button" class="btn btn-default edit-event-btn" data-edit-event="' + event.id + '">Edit Event</button><button type="button" class="btn btn-default delete-event-btn" data-delete-event="' + event.id + '">Delete Event</button></div></section>';
 
     });
     return itineraryEvents;
@@ -20,6 +20,7 @@ MyTinerary.ItineraryEvents = (function(){
   var _getEventsHandler = function(selectedItineraryUrl, $itineraryEvents){
     $itineraryEvents.html("");
     $.ajax({
+      headers: { Authorization: 'Token token=' + localStorage.getItem('token') },
       url: selectedItineraryUrl,
       type: 'GET',
     })
@@ -37,24 +38,27 @@ MyTinerary.ItineraryEvents = (function(){
   // CREATE NEW EVENT (Add to selected itinerary, submit to DB)
   ///////////////////////////////////////////////////////////////////////////////////
 
-  var _createEventHandler = function($eventTitleInput,$eventDateInput,$eventStartInput,$eventEndInput,$eventLocationInput,$eventAttendeesInput,$eventDescInput){
-    var eventData = {event: {
-      title: $($eventTitleInput).val(),
-      date: $($eventDateInput).val(),
-      start: $($eventStartInput).val(),
-      end: $($eventEndInput).val(),
-      location: $($eventLocationInput).val(),
-      attendees: $($eventAttendeesInput).val(),
-      desc: $($eventDescInput).val(),
-      // image: $imageInput.val()
-    }};
+  var _createEventHandler = function($eventTitleInput,$eventDateInput,$eventStartInput,$eventEndInput,$eventLocationInput,$eventAttendeesInput,$eventDescInput, $imageInput){
+    var fd = new FormData();
+    fd.append('title', $eventTitleInput.val());
+    fd.append('date', $eventDateInput.val());
+    fd.append('start_time', $eventStartInput.val());
+    fd.append('end_time', $eventEndInput.val());
+    fd.append('location', $eventLocationInput.val());
+    fd.append('attendees', $eventAttendeesInput.val());
+    fd.append('desc', $eventDescInput.val());
+    fd.append('image', $imageInput[0].files[0]);
+
     var itineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
     var selectedItineraryUrl = 'http://localhost:3000/itineraries/' + itineraryId + '/events';
     $.ajax({
+      headers: { Authorization: 'Token token=' + localStorage.getItem('token') },
       url: selectedItineraryUrl,
       type: 'POST',
-      dataType: 'json',
-      data: eventData,
+      processData: false,
+      cache: false,
+      contentType: false,
+      data: fd,
     })
     .done(function() {
       console.log('success: POSTed new event');
@@ -86,6 +90,7 @@ MyTinerary.ItineraryEvents = (function(){
   var _deleteEventHandler = function(target){
     var eventUrl = _getEventUrl(target);
     $.ajax({
+      headers: { Authorization: 'Token token=' + localStorage.getItem('token') },
       url: eventUrl,
       type: 'DELETE',
     })

@@ -13,6 +13,7 @@ MyTinerary.Itinerary = (function(){
     }};
     // POST that value to database in itinerary table
     $.ajax({
+      headers: { Authorization: 'Token token=' + localStorage.getItem('token') },
       url: itinerariesUrl,
       type: 'POST',
       dataType: 'json',
@@ -57,6 +58,7 @@ MyTinerary.Itinerary = (function(){
     var placeholderHeader = '<h2>Select an Itinerary to View</h2>';
 
     $.ajax({
+      headers: { Authorization: 'Token token=' + localStorage.getItem('token') },
       url: _getItineraryUrl(),
       type: 'DELETE',
     })
@@ -78,6 +80,7 @@ MyTinerary.Itinerary = (function(){
     var newItineraryName = $renameItineraryInput.val();
     var selectedItineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
     $.ajax({
+      headers: { Authorization: 'Token token=' + localStorage.getItem('token') },
       url: _getItineraryUrl(),
       type: 'PUT',
       dataType: 'json',

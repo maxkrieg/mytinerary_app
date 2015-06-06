@@ -20,6 +20,7 @@ MyTinerary.ItineraryList = (function(){
   var _getItineraryListHandler = function($itinerariesList) {
     $itinerariesList.html("");
     $.ajax({
+      headers: { Authorization: 'Token token=' + localStorage.getItem('token') },
       url: _allItinerariesUrl,
       type: 'GET',
     })
