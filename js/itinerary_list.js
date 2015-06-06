@@ -11,8 +11,9 @@ MyTinerary.ItineraryList = (function(){
   var renderItineraryList = function(response){
     var itineraryTitles = "";
     response.forEach(function(itinerary){
-    itineraryTitles += '<a href="#" class="list-group-item itinerary-li" data-itinerary="' + itinerary.id + '">' + itinerary.name + '</a>';
+    itineraryTitles += '<a href="#" id="itinerary-item" style="background: rgb(39, 39, 39); color: white; font-family: \'Vollkorn\', serif" class="list-group-item itinerary-li" data-itinerary="' + itinerary.id + '">' + itinerary.name + '</a>';
     });
+
     return itineraryTitles;
   };
 

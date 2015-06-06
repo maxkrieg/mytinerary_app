@@ -35,7 +35,7 @@ MyTinerary.Itinerary = (function(){
   ///////////////////////////////////////////////////////////////////////////////////
 
   var _renderItineraryName = function (selectedItineraryName, $selectedItineraryId) {
-    var itineraryHeader = '<h2 data-itinerary-id=' + $selectedItineraryId + '>' + selectedItineraryName + '</h2>';
+    var itineraryHeader = '<h2 style="font-family: \'Vollkorn\', serif; font-weight: bold" data-itinerary-id=' + $selectedItineraryId + '>' + selectedItineraryName + '</h2>';
     return itineraryHeader;
   };
 

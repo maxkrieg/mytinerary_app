@@ -23,7 +23,9 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h1 class="text-center">Login</h1>
+            <h1 class="text-center" id="mytinerary-modal">mytinerary</h1>
+            <h2 class="text-center">Login</h2>
+
         </div>
         <div class="modal-body">
             <form class="form col-md-12 center-block">
@@ -35,7 +37,7 @@
               </div>
               <div class="form-group">
                 <button class="btn btn-primary btn-lg btn-block" id="sign-in">Sign In</button>
-                <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
+                <!-- <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span> -->
               </div>
             </form>
         </div>
@@ -58,7 +60,7 @@
 
       <!-- LEFTBAR 1: ITINERARY LIST -->
       <div id="leftbar-itineraries-list" class="leftbar col-sm-3">
-        <h3 id="itineraries-list-header">Itineraries</h3>
+        <h3 id="itineraries-list-header" style="font-family: 'Vollkorn', serif; font-weight: bold">Itineraries</h3>
 
         <!-- Form for adding new Itinerary -->
         <label for="add-itinerary">Add Itinerary</label>
@@ -164,7 +166,7 @@
 
             <!-- Template Full Itinerary View -->
             <div id="itinerary-header-name">
-              <h2>Select an Itinerary to View</h2>
+              <h2 style="font-family: 'Vollkorn', serif; font-weight: bold">Select an Itinerary to View</h2>
             </div>
             <div class="list-group" id="itinerary-body-events">
               <div id="current-event">

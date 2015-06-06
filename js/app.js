@@ -26,8 +26,8 @@ $(document).ready(function(){
         localStorage.setItem('token', data.token);
         localStorage.getItem('token');
         $('#loginModal').removeClass('show');
-        // Render Itinerary List on Page Load
         itineraryList.getItineraryListHandler($itinerariesList);
+        $('#itinerary-item').addClass('itinerary-list-styling');
         $('#itinerary-btn-container').hide();
         $('#leftbar-create-event').hide();
         $('#rename-itinerary-container').hide();
