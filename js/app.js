@@ -3,7 +3,7 @@
 var itineraryList = MyTinerary.ItineraryList;
 var itinerary = MyTinerary.Itinerary;
 var itineraryEvents = MyTinerary.ItineraryEvents;
-var herokuDomain = 'afternoon-shore-8644.herokuapp.com'
+var coreDomain = 'afternoon-shore-8644.herokuapp.com';
 
 
 $(document).ready(function(){
@@ -12,7 +12,7 @@ $(document).ready(function(){
   $(function(){
     $('#sign-in').on('click', function(e){
       e.preventDefault();
-      $.ajax('http://localhost:3000/login',{
+      $.ajax(coreDomain + '/login',{
         contentType: 'application/json',
         processData: false,
         data: JSON.stringify({
@@ -35,6 +35,7 @@ $(document).ready(function(){
         $('#main-page').show();
       }).fail(function(jqxhr, textStatus, errorThrown){
         console.log(textStatus);
+        alert('Please check your email and password and try again.');
       });
     });
     $('#cancel-btn, #x-btn').click(function(e){
@@ -42,8 +43,6 @@ $(document).ready(function(){
       $('#loginModal').removeClass('show');
     });
   });
-
-
 
   // Hide certains elements on page load:
   $('#itinerary-btn-container').hide();
@@ -102,7 +101,6 @@ $(document).ready(function(){
   var $deleteEventBtn = $('.delete-event-btn');
 
 
-
   // Show Select Itinerary :: Inserts Itinerary ID into Header
   $itinerariesList.on('click', $itineraryListItem, function(){
     // Clear/Add Active Styling on List Item(s)
@@ -114,7 +112,7 @@ $(document).ready(function(){
       var selectedItineraryName = ($(event.target).html());
       var $selectedItineraryId = ($(event.target).attr('data-itinerary'));
       $itineraryHeader.html("").hide().append(itinerary.renderItineraryName(selectedItineraryName, $selectedItineraryId)).fadeIn(500);
-      var setItineraryUrl = 'http://localhost:3000/itineraries/' + $selectedItineraryId + '/events';
+      var setItineraryUrl = coreDomain + '/itineraries/' + $selectedItineraryId + '/events';
       $itineraryEvents.html("");
 
       // Call function to render Events
@@ -142,12 +140,12 @@ $(document).ready(function(){
     setTimeout(function(){itineraryList.getItineraryListHandler($itinerariesList);}, 500);
   });
 
-  // Submit New Event
+  // Create Event
   $eventSubmitBtn.click(function(e){
     e.preventDefault();
-    itineraryEvents.createEvent($eventTitleInput,$eventDateInput,$eventStartInput,$eventEndInput,$eventLocationInput,$eventAttendeesInput,$eventDescInput, $imageInput);
-    itineraryEvents.getEvents(itineraryEvents.getEventsUrl(),$itineraryEvents);
-    setTimeout(function(){$allInputForms.val("");}, 1000);
+    itineraryEvents.createEvent($eventTitleInput,$eventDateInput,$eventStartInput,$eventEndInput,$eventLocationInput,$eventAttendeesInput,$eventDescInput,$imageInput);
+    setTimeout(function(){itineraryEvents.getEvents(itineraryEvents.getEventsUrl(),$itineraryEvents);}, 100);
+    setTimeout(function(){$allInputForms.val("");}, 100);
   });
 
   // Delete Event
@@ -156,4 +154,5 @@ $(document).ready(function(){
     itineraryEvents.deleteEvent(event.target);
     setTimeout(function(){itineraryEvents.getEvents(itineraryEvents.getEventsUrl(),$itineraryEvents);}, 100);
   });
+
 });

@@ -47,6 +47,16 @@ POSITIONING
   float:left;
 }
 
+#event-btns {
+  position: absolute;
+  right:    10px;
+  bottom:   10px;
+}
+
+.list-group-item-text {
+  margin-bottom: 30px;
+}
+
 /* Leftbar: Both */
 .leftbar {
   height: 100%;
@@ -90,7 +100,7 @@ body {
 
 }
 
-#loginModal {
+.modal-header {
   font-family: 'Vollkorn', serif;
 }
 
@@ -148,17 +158,10 @@ body {
   box-shadow: 5px 5px;
 }
 
-#event-btns {
-  position: absolute;
-  right:    10px;
-  bottom:   10px;
-}
-
 .btn {
   border: none;
-  box-shadow: 2px 2px grey;
+  box-shadow: 0px 5px lightgrey;
   color: white;
-/*  font-weight: bold;*/
   background: rgb(169,3,41); /* Old browsers */
   background: -moz-linear-gradient(top,  rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(169,3,41,1)), color-stop(44%,rgba(143,2,34,1)), color-stop(100%,rgba(109,0,25,1))); /* Chrome,Safari4+ */
@@ -170,12 +173,11 @@ body {
 }
 
 .btn:hover {
-  font-weight: bold;
-  color: white;
+  color: grey;
 }
 
-.active {
-  background: blue;
+.btn:active {
+  box-shadow: none;
 }
 
 img {

@@ -23,10 +23,12 @@ MyTinerary.Itinerary = (function(){
     .done(function() {
       console.log('success: POSTed new itinerary');
       // getItineraryListHandler();
+      // itineraryList.getItineraryListHandler($itinerariesList);
       $itineraryNameInput.val("");
     })
     .fail(function() {
       console.log("error");
+      alert('Apologies, but it looks like something went wrong. Please reload page and try again.');
     });
   };
 
@@ -44,7 +46,7 @@ MyTinerary.Itinerary = (function(){
   //////////////////////////////////////////////////////////////////////////////////////
   var _getItineraryUrl = function() {
     var itineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
-    return 'http://localhost:3000/itineraries/' + itineraryId;
+    return coreDomain + '/itineraries/' + itineraryId;
   };
 
 
@@ -66,9 +68,11 @@ MyTinerary.Itinerary = (function(){
       console.log("success: deleted itinerary");
       $itineraryEvents.html("");
       $itineraryHeader.html("").hide().append(placeholderHeader).fadeIn(400);
+      // itineraryList.getItineraryListHandler($itinerariesList);
     })
     .fail(function() {
       console.log("error");
+      alert('Apologies, but it looks like something went wrong. Please reload page and try again.');
     });
   };
 
@@ -93,6 +97,7 @@ MyTinerary.Itinerary = (function(){
     })
     .fail(function() {
       console.log("error");
+      alert('Apologies, but it looks like something went wrong. Please reload page and try again.');
     });
   };
 

@@ -9,18 +9,9 @@ MyTinerary.ItineraryEvents = (function(){
   var _renderEvents = function(response){
     var itineraryEvents = "";
     response.forEach(function(event){
-      var image = event.image_tag;
-      var finalImage;
-      if (image) {
-        finalImage = '<div class="media-left" style="margin-right: 3px">' + image + '</div>';
-      }
-      else {
-        finalImage = '<span></span>';
-      }
-
-    itineraryEvents +=
-      '<section style="border: 1px solid black; border-radius: 3px" class="list-group-item" data-event="' + event.id + '"><h4 class="list-group-item-heading" font-weight: bold">'+ event.title + '</h4>' + finalImage + '<h5>Date: ' + event.date + '</h5><h5>Start Time: ' + event.start_time + '</h5><h5>End Time: ' + event.end_time + '</h5><h5>Location: ' + event.location + '</h5><h5>Attendees: ' + event.attendees + '</h5><p class="list-group-item-text">' + event.desc + '</p><div class="btn-group btn-group-sm" role="group" aria-label="..." id="event-btns"><button type="button" class="btn btn-default delete-event-btn" data-delete-event="' + event.id + '">Delete Event</button></div></section>';
-    });
+      itineraryEvents +=
+        '<section style="border: 1px solid black; border-radius: 3px padding-bottom: 20px;" class="list-group-item" data-event="' + event.id + '"><h4 class="list-group-item-heading" font-weight: bold">'+ event.title + '</h4><div class="media-left" style="margin-right: 5px; margin-bottom: 5px; margin-top: 5px;">' + event.image_tag + '</div><h5>Date: ' + event.date + '</h5><h5>Start Time: ' + event.start_time + '</h5><h5>End Time: ' + event.end_time + '</h5><h5>Location: ' + event.location + '</h5><h5>Attendees: ' + event.attendees + '</h5><p class="list-group-item-text">' + event.desc + '</p><div class="btn-group btn-group-sm" role="group" aria-label="..." id="event-btns"><button type="button" class="btn btn-default delete-event-btn" data-delete-event="' + event.id + '">Delete Event</button></div></section>';
+      });
 
     return itineraryEvents;
   };
@@ -40,6 +31,7 @@ MyTinerary.ItineraryEvents = (function(){
     })
     .fail(function() {
       console.log("error getting events");
+      alert('Apologies, but it looks like something went wrong. Please reload page and try again.');
     });
   };
 
@@ -48,10 +40,20 @@ MyTinerary.ItineraryEvents = (function(){
   ///////////////////////////////////////////////////////////////////////////////////
 
   var _createEventHandler = function($eventTitleInput,$eventDateInput,$eventStartInput,$eventEndInput,$eventLocationInput,$eventAttendeesInput,$eventDescInput, $imageInput){
+    var startTime = $eventStartInput.val();
+    var date = $eventDateInput.val();
+
+    if ($eventStartInput !== true) {
+      startTime = '12:00';
+    }
+    if ($eventDateInput !== true) {
+      date = '2015-01-01';
+    }
+
     var fd = new FormData();
     fd.append('title', $eventTitleInput.val());
-    fd.append('date', $eventDateInput.val());
-    fd.append('start_time', $eventStartInput.val());
+    fd.append('date', date);
+    fd.append('start_time', startTime);
     fd.append('end_time', $eventEndInput.val());
     fd.append('location', $eventLocationInput.val());
     fd.append('attendees', $eventAttendeesInput.val());
@@ -59,7 +61,7 @@ MyTinerary.ItineraryEvents = (function(){
     fd.append('image', $imageInput[0].files[0]);
 
     var itineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
-    var selectedItineraryUrl = 'http://localhost:3000/itineraries/' + itineraryId + '/events';
+    var selectedItineraryUrl = coreDomain + '/itineraries/' + itineraryId + '/events';
     $.ajax({
       headers: { Authorization: 'Token token=' + localStorage.getItem('token') },
       url: selectedItineraryUrl,
@@ -74,6 +76,7 @@ MyTinerary.ItineraryEvents = (function(){
     })
     .fail(function() {
       console.log("error POSTing new event");
+      alert('Apologies, but it looks like something went wrong. Please reload page and try again.');
     });
   };
 
@@ -83,12 +86,12 @@ MyTinerary.ItineraryEvents = (function(){
   var _getEventUrl = function(target) {
     var itineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
     var eventId = $(target).attr('data-delete-event');
-    return 'http://localhost:3000/itineraries/' + itineraryId + '/events/' + eventId;
+    return coreDomain + '/itineraries/' + itineraryId + '/events/' + eventId;
   };
 
   var _getEventsUrl = function(target) {
     var itineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
-    return 'http://localhost:3000/itineraries/' + itineraryId + '/events';
+    return coreDomain+ '/itineraries/' + itineraryId + '/events';
   };
 
   ///////////////////////////////////////////////////////////////////////////////////
@@ -108,6 +111,7 @@ MyTinerary.ItineraryEvents = (function(){
     })
     .fail(function() {
       console.log("error deleting event");
+      alert('Apologies, but it looks like something went wrong. Please reload page and try again.');
     });
   };
 

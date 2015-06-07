@@ -25,8 +25,8 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="x-btn">×</button>
             <h1 class="text-center" id="mytinerary-modal">mytinerary</h1>
             <h2 class="text-center">Login</h2>
-
         </div>
+
         <div class="modal-body">
             <form class="form col-md-12 center-block">
               <div class="form-group">
@@ -112,7 +112,7 @@
 
           <div class="form-group form-group-md">
             <label for="upload-image">Upload Event Image</label>
-            <input type="file" id="upload-image">
+            <input type="file" id="upload-image" class="create-event-input">
             <p class="help-block">Image size must be less than 100MB.</p>
           </div>
           <div class="btn-group" role="group" aria-label="..." id="event-create-btns">
@@ -143,45 +143,20 @@
         </div>
 
         <div id="itinerary-container">
-
-          <!-- Sample Full Itinerary View-->
-          <!-- <h2>Sample Itinerary Title</h2>
-            <div class="list-group">
-                <a href="#" class="list-group-item">
-                  <h4 class="list-group-item-heading">Sample Event Title</h4>
-                  <div class="media-left">
-                      <img class="media-object" src="http://placehold.it/100x100" alt="...">
-                  </div>
-                  <h5>Date and Time</h5>
-                  <h5>Location</h5>
-                  <h5>Attendees: Sample attendees list</h5>
-                  <p class="list-group-item-text">XOXO cronut brunch mlkshk, pork belly Odd Future trust fund umami. Migas you probably haven't heard of them Williamsburg leggings. Drinking vinegar iPhone mustache, twee mixtape readymade Helvetica chambray. Paleo polaroid Schlitz photo booth blog. Sartorial Truffaut butcher, paleo chia synth XOXO organic. Jean shorts DIY you probably haven't heard of them distillery, deep v kale chips Kickstarter meggings occupy narwhal Helvetica authentic dreamcatcher roof party. Craft beer seitan Carles gluten-free messenger bag, hella Kickstarter chillwave selvage letterpress Brooklyn kale chips bespoke locavore ennui.</p>
-                  <div class="btn-group" role="group" aria-label="..." id="event-btns">
-                    <button type="button" class="btn btn-default" id="edit-event-btn">Edit Event</button>
-                    <button type="button" class="btn btn-default" id="delete-event-btn">Delete Event</button>
-                  </div>
-                </a>
-            </div> -->
-            <!-- End Sample Full Itinerary View -->
-
-            <!-- Template Full Itinerary View -->
-            <div id="itinerary-header-name">
-              <h2 style="font-family: 'Vollkorn', serif; font-weight: bold">Select an Itinerary to View or Create a New Itinerary</h2>
+          <!-- Template Full Itinerary View -->
+          <div id="itinerary-header-name">
+            <h2 style="font-family: 'Vollkorn', serif; font-weight: bold">Select an Itinerary to View or Create a New Itinerary</h2>
+          </div>
+          <div class="list-group" id="itinerary-body-events">
+            <div id="current-event">
             </div>
-            <div class="list-group" id="itinerary-body-events">
-              <div id="current-event">
-              </div>
-            </div>
-
+          </div>
         <!-- Closing for itinerary container -->
         </div>
-
       <!-- Closing tag for #main div -->
       </div>
-
     <!-- Closing tag for #row div -->
     </div>
-
   <!-- Closing tag for #container div -->
   </div>
 

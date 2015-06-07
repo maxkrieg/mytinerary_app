@@ -5,7 +5,7 @@ MyTinerary.ItineraryList = (function(){
   //////////////////////////////////////////////////////////////////////////////////////
 
   // Set DOM element and resource to variables
-  var _allItinerariesUrl = 'http://localhost:3000/itineraries';
+  var _allItinerariesUrl = coreDomain + '/itineraries';
 
   // Function to format itinerary names correctly (from JSON)
   var renderItineraryList = function(response){
@@ -32,6 +32,7 @@ MyTinerary.ItineraryList = (function(){
     })
     .fail(function() {
       console.log("error getting Itinerary names");
+      alert('Apologies, but it looks like something went wrong. Please reload page and try again.');
     });
   };
 
