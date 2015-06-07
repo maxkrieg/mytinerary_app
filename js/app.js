@@ -3,6 +3,7 @@
 var itineraryList = MyTinerary.ItineraryList;
 var itinerary = MyTinerary.Itinerary;
 var itineraryEvents = MyTinerary.ItineraryEvents;
+var herokuDomain = 'afternoon-shore-8644.herokuapp.com'
 
 
 $(document).ready(function(){
