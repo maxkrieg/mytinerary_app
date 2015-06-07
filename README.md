@@ -10,14 +10,14 @@ All JavaScript lives in the js directory, CSS in styles.
 
 ## User Stories/Features
 ---------------
-### 1. User can view list of itineraries.
-### 2. User can select an itinerary.
-### 3. User can view events in an itinerary.
-### 4. User can create a new itinerary.
-### 5. User can delete an itinerary.
-### 6. User can edit an itinerary name.
-### 7. User can create an event for an itinerary.
-### 8. User can delete an event from an itinerary.
+#### 1. User can view list of itineraries.
+#### 2. User can select an itinerary.
+#### 3. User can view events in an itinerary.
+#### 4. User can create a new itinerary.
+#### 5. User can delete an itinerary.
+#### 6. User can edit an itinerary name.
+#### 7. User can create an event for an itinerary.
+#### 8. User can delete an event from an itinerary.
 
 ## Upcoming Features
 ---------------
