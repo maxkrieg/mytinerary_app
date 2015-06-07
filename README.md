@@ -1,5 +1,5 @@
 
-### mytinerary
+## mytinerary
 -------------------
 For full app: http://maxkrieg.github.io/mytinerary_app
 For back-end code: https://github.com/maxkrieg/mytinerary_api
@@ -8,36 +8,34 @@ mytinerary is a simple itinerary builder app that allows you to create itinerari
 
 All JavaScript lives in the js directory, CSS in styles.
 
-### User Stories/Features
+## User Stories/Features
 ---------------
-# 1. User can view list of itineraries.
-# 2. User can select an itinerary.
-# 3. User can view events in an itinerary.
-# 4. User can create a new itinerary.
-# 5. User can delete an itinerary.
-# 6. User can edit an itinerary name.
-# 7. User can create an event for an itinerary.
-# 8. User can delete an event from an itinerary.
+### 1. User can view list of itineraries.
+### 2. User can select an itinerary.
+### 3. User can view events in an itinerary.
+### 4. User can create a new itinerary.
+### 5. User can delete an itinerary.
+### 6. User can edit an itinerary name.
+### 7. User can create an event for an itinerary.
+### 8. User can delete an event from an itinerary.
 
-![alt tag](wireframe-1.jpg)
-![alt tag](wireframe-2.jpg)
-### Upcoming Features
+## Upcoming Features
 ---------------
 User will be able to modify any part of an event.
 
-### Downloading
+## Downloading
 ---------------
 Do not download this app as it is not meant for offline consumption.
 
-### Authors
+## Authors
 -----------
 Max Krieg
 
-### Bug Reporting
+## Bug Reporting
 -----------------
 Please submit all bugs or pull requests to github repository (branch - gh-pages): https://github.com/maxkrieg/mytinerary_app.
 
-### Contact
+## Contact
 -----------
 For all other inquiries please reach out to maxwell.krieg@gmail.com
 
