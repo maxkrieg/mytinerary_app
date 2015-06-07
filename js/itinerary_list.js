@@ -1,3 +1,5 @@
+var coreDomain = 'http://afternoon-shore-8644.herokuapp.com';
+
 var MyTinerary = MyTinerary || {};
 MyTinerary.ItineraryList = (function(){
   //////////////////////////////////////////////////////////////////////////////////////
