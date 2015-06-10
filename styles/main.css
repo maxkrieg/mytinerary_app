@@ -1,13 +1,14 @@
 /********************
 POSITIONING
 ********************/
+/* Open Sans Font is awesome */
 
-#header {
-  margin-top: 0;
-  padding-top: 40px;
-  padding-bottom: 75px;
-  height: 100px;
-  padding-left: 30px
+body {
+  padding-top: 70px;
+}
+
+.jumbotron {
+  padding-left: 20px;
 }
 
 .container {
@@ -95,16 +96,6 @@ STYLING
 
 #mytinerary-modal {
   font-weight: bold;
-}
-
-#header {
-  color: white;
-  font-family: 'Vollkorn', serif;
-  background: #2c3e50;
-}
-
-#subtitle {
-  color: white;
 }
 
 #itinerary-item {
