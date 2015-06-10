@@ -4,8 +4,7 @@ var itineraryList = MyTinerary.ItineraryList;
 var itinerary = MyTinerary.Itinerary;
 var itineraryEvents = MyTinerary.ItineraryEvents;
 
-
-
+// Document ready
 $(document).ready(function(){
   $('#main-page').hide();
 
@@ -28,10 +27,7 @@ $(document).ready(function(){
         localStorage.getItem('token');
         $('#loginModal').removeClass('show');
         itineraryList.getItineraryListHandler($itinerariesList);
-        $('#itinerary-item').addClass('itinerary-list-styling');
-        $('#itinerary-btn-container').hide();
-        $('#leftbar-create-event').hide();
-        $('#rename-itinerary-container').hide();
+        $('#itinerary-btn-container, #leftbar-create-event, #rename-itinerary-container').hide();
         $('#main-page').show();
       }).fail(function(jqxhr, textStatus, errorThrown){
         console.log(textStatus);
@@ -44,8 +40,8 @@ $(document).ready(function(){
     });
   });
 
-  var $itineraryBtnContainer = ('#itinerary-btn-container');
-  var $leftbarCreateEvent = ('#leftbar-create-event');
+  // var $itineraryBtnContainer = ('#itinerary-btn-container');
+  // var $leftbarCreateEvent = ('#leftbar-create-event');
 
   var $itinerariesList = $('#itinerary-list');
   var $itineraryListItem = $('.itinerary-li');
@@ -70,9 +66,7 @@ $(document).ready(function(){
 
 
     // Hide certains elements on page load:
-  $('#itinerary-btn-container').hide();
-  $('#leftbar-create-event').hide();
-  $('#rename-itinerary-container').hide();
+  $('#itinerary-btn-container, #leftbar-create-event, #rename-itinerary-container').hide();
 
   // Shows Create Event Form, Hides Itinerary List
   $('#add-event-btn').click(function(e){
@@ -105,7 +99,7 @@ $(document).ready(function(){
   });
 
 
-  // Show Select Itinerary :: Inserts Itinerary ID into Header
+  // Show Selected Itinerary :: Inserts Itinerary ID into Header
   $itinerariesList.on('click', $itineraryListItem, function(){
     // Clear/Add Active Styling on List Item(s)
       $(this).children().removeClass('active');
