@@ -44,7 +44,32 @@ $(document).ready(function(){
     });
   });
 
-  // Hide certains elements on page load:
+  var $itineraryBtnContainer = ('#itinerary-btn-container');
+  var $leftbarCreateEvent = ('#leftbar-create-event');
+
+  var $itinerariesList = $('#itinerary-list');
+  var $itineraryListItem = $('.itinerary-li');
+  var $itineraryHeader = $('#itinerary-header-name');
+  var $itineraryEvents = $('#itinerary-body-events');
+  var $itineraryNameInput = $('#itinerary-name');
+  var $itinerarySubmitBtn = $('#itinerary-create-btn');
+  var $deleteItineraryBtn = $('#delete-itinerary-btn');
+  var $renameItineraryInput = $('#rename-itinerary-input');
+  var $renameSubmitBtn = $('#rename-submit-btn');
+  var $eventTitleInput = $('#event-title');
+  var $eventDateInput = $('#event-date');
+  var $eventStartInput = $('#start-time');
+  var $eventEndInput = $('#end-time');
+  var $eventLocationInput = $('#location');
+  var $eventAttendeesInput = $('#attendees');
+  var $eventDescInput = $('#desc');
+  var $imageInput = $('#upload-image');
+  var $eventSubmitBtn = $('#event-submit-btn');
+  var $allInputForms = $('.create-event-input');
+  var $deleteEventBtn = $('.delete-event-btn');
+
+
+    // Hide certains elements on page load:
   $('#itinerary-btn-container').hide();
   $('#leftbar-create-event').hide();
   $('#rename-itinerary-container').hide();
@@ -78,27 +103,6 @@ $(document).ready(function(){
       $('#itinerary-btns').fadeIn(500);
     }, 500);
   });
-
-  var $itinerariesList = $('#itinerary-list');
-  var $itineraryListItem = $('.itinerary-li');
-  var $itineraryHeader = $('#itinerary-header-name');
-  var $itineraryEvents = $('#itinerary-body-events');
-  var $itineraryNameInput = $('#itinerary-name');
-  var $itinerarySubmitBtn = $('#itinerary-create-btn');
-  var $deleteItineraryBtn = $('#delete-itinerary-btn');
-  var $renameItineraryInput = $('#rename-itinerary-input');
-  var $renameSubmitBtn = $('#rename-submit-btn');
-  var $eventTitleInput = $('#event-title');
-  var $eventDateInput = $('#event-date');
-  var $eventStartInput = $('#start-time');
-  var $eventEndInput = $('#end-time');
-  var $eventLocationInput = $('#location');
-  var $eventAttendeesInput = $('#attendees');
-  var $eventDescInput = $('#desc');
-  var $imageInput = $('#upload-image');
-  var $eventSubmitBtn = $('#event-submit-btn');
-  var $allInputForms = $('.create-event-input');
-  var $deleteEventBtn = $('.delete-event-btn');
 
 
   // Show Select Itinerary :: Inserts Itinerary ID into Header

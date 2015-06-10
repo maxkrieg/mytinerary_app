@@ -1,4 +1,4 @@
-var coreDomain = 'https://afternoon-shore-8644.herokuapp.com';
+var coreDomain = 'http://localhost:3000';
 
 var MyTinerary = MyTinerary || {};
 MyTinerary.ItineraryList = (function(){
@@ -13,7 +13,7 @@ MyTinerary.ItineraryList = (function(){
   var renderItineraryList = function(response){
     var itineraryTitles = "";
     response.forEach(function(itinerary){
-    itineraryTitles += '<a href="#" id="itinerary-item" style="background: rgb(39, 39, 39); color: white;" class="list-group-item itinerary-li" data-itinerary="' + itinerary.id + '">' + itinerary.name + '</a>';
+    itineraryTitles += '<a href="#" id="itinerary-item" class="list-group-item itinerary-li" data-itinerary="' + itinerary.id + '">' + itinerary.name + '</a>';
     });
 
     return itineraryTitles;

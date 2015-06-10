@@ -10,7 +10,7 @@ MyTinerary.ItineraryEvents = (function(){
     var itineraryEvents = "";
     response.forEach(function(event){
       itineraryEvents +=
-        '<section style="border: 1px solid black; border-radius: 3px padding-bottom: 20px;" class="list-group-item" data-event="' + event.id + '"><h4 class="list-group-item-heading" font-weight: bold">'+ event.title + '</h4><div class="media-left" style="margin-right: 5px; margin-bottom: 5px; margin-top: 5px;">' + event.image_tag + '</div><h5>Date: ' + event.date + '</h5><h5>Start Time: ' + event.start_time + '</h5><h5>End Time: ' + event.end_time + '</h5><h5>Location: ' + event.location + '</h5><h5>Attendees: ' + event.attendees + '</h5><p class="list-group-item-text">' + event.desc + '</p><div class="btn-group btn-group-sm" role="group" aria-label="..." id="event-btns"><button type="button" class="btn btn-default delete-event-btn" data-delete-event="' + event.id + '">Delete Event</button></div></section>';
+        '<section style="padding-bottom: 20px;" class="list-group-item" data-event="' + event.id + '"><h4 class="list-group-item-heading" font-weight: bold">'+ event.title + '</h4><div class="media-left" style="margin-right: 5px; margin-bottom: 5px; margin-top: 5px;">' + event.image_tag + '</div><h5>Date: ' + event.date + '</h5><h5>Start Time: ' + event.start_time + '</h5><h5>End Time: ' + event.end_time + '</h5><h5>Location: ' + event.location + '</h5><h5>Attendees: ' + event.attendees + '</h5><p class="list-group-item-text">' + event.desc + '</p><div class="btn-group btn-group-sm" role="group" aria-label="..." id="event-btns"><button type="button" class="btn btn-default delete-event-btn" data-delete-event="' + event.id + '">Delete Event</button></div></section>';
       });
 
     return itineraryEvents;
@@ -91,7 +91,7 @@ MyTinerary.ItineraryEvents = (function(){
 
   var _getEventsUrl = function(target) {
     var itineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
-    return coreDomain+ '/itineraries/' + itineraryId + '/events';
+    return coreDomain + '/itineraries/' + itineraryId + '/events';
   };
 
   ///////////////////////////////////////////////////////////////////////////////////
