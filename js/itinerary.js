@@ -93,7 +93,7 @@ MyTinerary.Itinerary = (function(){
     .done(function() {
       console.log("success");
       $renameItineraryInput.val("");
-      $itineraryHeader.html("").hide().append(_renderItineraryName(newItineraryName, selectedItineraryId)).fadeIn(500);
+      $itineraryHeader.html("").hide().append(_renderItineraryName(newItineraryName, selectedItineraryId)).fadeIn(2000);
     })
     .fail(function() {
       console.log("error");

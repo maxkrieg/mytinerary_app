@@ -47,7 +47,7 @@ MyTinerary.ItineraryEvents = (function(){
       startTime = '12:00';
     }
     if ($eventDateInput !== true) {
-      date = '2015-01-01';
+      date = '2014-01-01';
     }
 
     var fd = new FormData();

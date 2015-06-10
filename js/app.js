@@ -40,72 +40,74 @@ $(document).ready(function(){
     });
   });
 
-  // var $itineraryBtnContainer = ('#itinerary-btn-container');
-  // var $leftbarCreateEvent = ('#leftbar-create-event');
+  ////////////////////////////////////////////////////////////////////////////
+  // NAMING DOM ELEMENTS FOR EASE OF USE
+  ////////////////////////////////////////////////////////////////////////////
 
-  var $itinerariesList = $('#itinerary-list');
-  var $itineraryListItem = $('.itinerary-li');
-  var $itineraryHeader = $('#itinerary-header-name');
-  var $itineraryEvents = $('#itinerary-body-events');
-  var $itineraryNameInput = $('#itinerary-name');
-  var $itinerarySubmitBtn = $('#itinerary-create-btn');
-  var $deleteItineraryBtn = $('#delete-itinerary-btn');
-  var $renameItineraryInput = $('#rename-itinerary-input');
-  var $renameSubmitBtn = $('#rename-submit-btn');
-  var $eventTitleInput = $('#event-title');
-  var $eventDateInput = $('#event-date');
-  var $eventStartInput = $('#start-time');
-  var $eventEndInput = $('#end-time');
-  var $eventLocationInput = $('#location');
-  var $eventAttendeesInput = $('#attendees');
-  var $eventDescInput = $('#desc');
-  var $imageInput = $('#upload-image');
-  var $eventSubmitBtn = $('#event-submit-btn');
-  var $allInputForms = $('.create-event-input');
-  var $deleteEventBtn = $('.delete-event-btn');
+  // Leftbar: Itinerary List
+  var $leftbarItinerariesList = $('#leftbar-itineraries-list'),
+  $itinerariesList = $('#itinerary-list'),
+  $itineraryListItem = $('.itinerary-li'),
+
+  // Leftbar: Itinerary List :: Add Itinerary
+  $itineraryNameInput = $('#itinerary-name'),
+  $itinerarySubmitBtn = $('#itinerary-create-btn'),
+
+  // Leftbar: Create Event
+  $leftbarCreateEvent = $('#leftbar-create-event'),
+
+  // Leftbar: Create Event :: Form Fields
+  $eventTitleInput = $('#event-title'),
+  $eventDateInput = $('#event-date'),
+  $eventStartInput = $('#start-time'),
+  $eventEndInput = $('#end-time'),
+  $eventLocationInput = $('#location'),
+  $eventAttendeesInput = $('#attendees'),
+  $eventDescInput = $('#desc'),
+  $imageInput = $('#upload-image'),
+  $eventSubmitBtn = $('#event-submit-btn'),
+  $eventCancelBtn = $('#event-cancel-btn'),
+  $allInputForms = $('.create-event-input'),
+
+  // Itinerary Main View
+  $addEventBtn = $('#add-event-btn'),
+  $itineraryHeader = $('#itinerary-header-name'),
+  $itineraryEvents = $('#itinerary-body-events'),
+
+  // Itinerary Main View :: Default Itinerary Buttons
+  $itineraryBtnContainer = $('#itinerary-btn-container'),
+  $itineraryBtns = $('#itinerary-btns'),
+  $deleteItineraryBtn = $('#delete-itinerary-btn'),
+  $renameItineraryBtn = $('#edit-name-btn'),
+
+  // Itinerary Main View :: Rename Itinerary Buttons
+  $renameItineraryContainer = $('#rename-itinerary-container'),
+  $renameSubmitBtn = $('#rename-submit-btn'),
+  $renameCancelBtn = $('#cancel-rename-btn'),
+  $renameItineraryInput = $('#rename-itinerary-input'),
+
+  // Itinerary Main View :: Event buttons
+  $deleteEventBtn = $('.delete-event-btn');
 
 
-    // Hide certains elements on page load:
-  $('#itinerary-btn-container, #leftbar-create-event, #rename-itinerary-container').hide();
+  ////////////////////////////////////////////////////////////////////////////
+  // CLICK HANDLERS
+  ////////////////////////////////////////////////////////////////////////////
 
-  // Shows Create Event Form, Hides Itinerary List
-  $('#add-event-btn').click(function(e){
-    e.preventDefault();
-    $('#leftbar-itineraries-list').hide();
-    $('#leftbar-create-event').fadeIn(500);
-  });
+  // Hide certains elements on page load:
+  ($itineraryBtnContainer, $leftbarCreateEvent, $renameItineraryContainer).hide();
 
-  // Show itineraries-list, hide create event form
-  $('#event-submit-btn, #event-cancel-btn').click(function(e){
-    e.preventDefault();
-    $('#leftbar-create-event').hide();
-    $('#leftbar-itineraries-list').fadeIn(700);
-  });
-
-  // Show Rename Itinerary Form, Hide Other Buttons
-  $('#edit-name-btn').click(function(e){
-    e.preventDefault();
-    $('#itinerary-btns').hide();
-    $('#rename-itinerary-container').fadeIn(500);
-  });
-
-  // Hide Rename Itinerary Form, Show Other Buttons
-  $('#rename-submit-btn, #cancel-rename-btn').click(function(e){
-    e.preventDefault();
-    $('#rename-itinerary-container').fadeOut(400);
-    setTimeout(function(){
-      $('#itinerary-btns').fadeIn(500);
-    }, 500);
-  });
-
+  // Navbar dropdown
+  // $('.dropdown-toggle').toggle();
 
   // Show Selected Itinerary :: Inserts Itinerary ID into Header
-  $itinerariesList.on('click', $itineraryListItem, function(){
+  $itinerariesList.on('click', $itineraryListItem, function(e){
+    e.preventDefault();
     // Clear/Add Active Styling on List Item(s)
       $(this).children().removeClass('active');
       $(event.target).addClass('active');
     // Display Itinerary Editing Buttons
-      $('#itinerary-btn-container').show();
+      $itineraryBtnContainer.show();
     // Get Itinerary ID for Header & Render Header
       var selectedItineraryName = ($(event.target).html());
       var $selectedItineraryId = ($(event.target).attr('data-itinerary'));
@@ -115,6 +117,13 @@ $(document).ready(function(){
 
       // Call function to render Events
       itineraryEvents.getEvents(setItineraryUrl, $itineraryEvents);
+  });
+
+  // Add Event Btn: Shows Create Event Form, Hides Itinerary List
+  $addEventBtn.click(function(e){
+    e.preventDefault();
+    $leftbarItinerariesList.hide();
+    $leftbarCreateEvent.fadeIn(500);
   });
 
   // Create New Itinerary
@@ -131,19 +140,46 @@ $(document).ready(function(){
     setTimeout(function(){itineraryList.getItineraryListHandler($itinerariesList);}, 500);
   });
 
-  // Rename Itinerary
+  // Edit Itinerary Name
+  $renameItineraryBtn.click(function(e){
+    e.preventDefault();
+    $itineraryBtns.hide();
+    $renameItineraryContainer.fadeIn(500);
+  });
+
+  // Rename Itinerary SUBMIT
   $renameSubmitBtn.click(function(e){
     e.preventDefault();
+    $renameItineraryContainer.fadeOut(400);
+    setTimeout(function(){$itineraryBtns.fadeIn(500);}, 500);
     itinerary.renameItineraryHandler($renameItineraryInput, $itineraryHeader);
     setTimeout(function(){itineraryList.getItineraryListHandler($itinerariesList);}, 500);
+  });
+
+  // Rename Itinerary CANCEL
+  $renameCancelBtn.click(function(e){
+    e.preventDefault();
+    $renameItineraryContainer.fadeOut(400);
+    setTimeout(function(){
+      $itineraryBtns.fadeIn(500);
+    }, 500);
   });
 
   // Create Event
   $eventSubmitBtn.click(function(e){
     e.preventDefault();
+    $leftbarCreateEvent.hide();
+    $leftbarItinerariesList.fadeIn(700);
     itineraryEvents.createEvent($eventTitleInput,$eventDateInput,$eventStartInput,$eventEndInput,$eventLocationInput,$eventAttendeesInput,$eventDescInput,$imageInput);
     setTimeout(function(){itineraryEvents.getEvents(itineraryEvents.getEventsUrl(),$itineraryEvents);}, 100);
     setTimeout(function(){$allInputForms.val("");}, 100);
+  });
+
+  // Cancel Event Btn: Show itineraries-list, hide create event form
+  $eventCancelBtn.click(function(e){
+    e.preventDefault();
+    $leftbarCreateEvent.hide();
+    $leftbarItinerariesList.fadeIn(700);
   });
 
   // Delete Event
