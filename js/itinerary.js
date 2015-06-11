@@ -7,7 +7,7 @@ MyTinerary.Itinerary = (function(){
 
   // When Submit button pressed, capture value from Create Itinerary form field
   // Create JSON object using create method on Itinerary constructor function
-  var _createItineraryHandler = function(itinerariesUrl, $itineraryNameInput){
+  var _createItineraryHandler = function(itinerariesUrl, $itineraryNameInput, $itinerariesList){
     var itineraryData = {itinerary: {
       name: $itineraryNameInput.val()
     }};
@@ -22,8 +22,7 @@ MyTinerary.Itinerary = (function(){
     // Once complete, run the itineraryListHandler function to render updated list of itineraries
     .done(function() {
       console.log('success: POSTed new itinerary');
-      // getItineraryListHandler();
-      // itineraryList.getItineraryListHandler($itinerariesList);
+      itineraryList.getItineraryListHandler($itinerariesList);
       $itineraryNameInput.val("");
     })
     .fail(function() {
@@ -33,7 +32,7 @@ MyTinerary.Itinerary = (function(){
   };
 
   ///////////////////////////////////////////////////////////////////////////////////
-  // DISPLAY ITINERARY (Jumps into Events file to grab Events)
+  // DISPLAY ITINERARY NAME IN MAIN VIEW
   ///////////////////////////////////////////////////////////////////////////////////
 
   var _renderItineraryName = function (selectedItineraryName, $selectedItineraryId) {
@@ -55,7 +54,7 @@ MyTinerary.Itinerary = (function(){
   ///////////////////////////////////////////////////////////////////////////////////
 
   // Handler for deleting itinerary from DB
-  var _deleteItineraryHandler = function($itineraryEvents, $itineraryHeader){
+  var _deleteItineraryHandler = function($itineraryEvents, $itineraryHeader, $itinerariesList){
 
     var placeholderHeader = '<h2 style="font-family: \'Vollkorn\', serif; font-weight: bold">Select an Itinerary to View</h2>';
 
@@ -69,6 +68,7 @@ MyTinerary.Itinerary = (function(){
       $itineraryEvents.html("");
       $itineraryHeader.html("").hide().append(placeholderHeader).fadeIn(400);
       // itineraryList.getItineraryListHandler($itinerariesList);
+      itineraryList.getItineraryListHandler($itinerariesList);
     })
     .fail(function() {
       console.log("error");
@@ -80,7 +80,7 @@ MyTinerary.Itinerary = (function(){
   // RENAME ITINERARY
   ///////////////////////////////////////////////////////////////////////////////////
 
-  var _renameItineraryHandler = function($renameItineraryInput, $itineraryHeader){
+  var _renameItineraryHandler = function($renameItineraryInput, $itineraryHeader, $itinerariesList){
     var newItineraryName = $renameItineraryInput.val();
     var selectedItineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
     $.ajax({
@@ -94,6 +94,7 @@ MyTinerary.Itinerary = (function(){
       console.log("success");
       $renameItineraryInput.val("");
       $itineraryHeader.html("").hide().append(_renderItineraryName(newItineraryName, selectedItineraryId)).fadeIn(2000);
+      itineraryList.getItineraryListHandler($itinerariesList);
     })
     .fail(function() {
       console.log("error");

@@ -1,4 +1,4 @@
-var coreDomain = 'http://localhost:3000';
+
 
 var MyTinerary = MyTinerary || {};
 MyTinerary.ItineraryList = (function(){
@@ -30,7 +30,7 @@ MyTinerary.ItineraryList = (function(){
     .done(function(response) {
       console.log('success: got all Itinerary Names for Leftbar');
       var itineraryList = renderItineraryList(response);
-      $itinerariesList.append(itineraryList);
+      $itinerariesList.html("").hide().append(itineraryList).fadeIn(300);
     })
     .fail(function() {
       console.log("error getting Itinerary names");

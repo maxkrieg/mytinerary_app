@@ -39,7 +39,7 @@ MyTinerary.ItineraryEvents = (function(){
   // CREATE NEW EVENT (Add to selected itinerary, submit to DB)
   ///////////////////////////////////////////////////////////////////////////////////
 
-  var _createEventHandler = function($eventTitleInput,$eventDateInput,$eventStartInput,$eventEndInput,$eventLocationInput,$eventAttendeesInput,$eventDescInput, $imageInput){
+  var _createEventHandler = function($eventTitleInput,$eventDateInput,$eventStartInput,$eventEndInput,$eventLocationInput,$eventAttendeesInput,$eventDescInput, $imageInput, $itineraryEvents){
     var startTime = $eventStartInput.val();
     var date = $eventDateInput.val();
 
@@ -62,6 +62,7 @@ MyTinerary.ItineraryEvents = (function(){
 
     var itineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
     var selectedItineraryUrl = coreDomain + '/itineraries/' + itineraryId + '/events';
+
     $.ajax({
       headers: { Authorization: 'Token token=' + localStorage.getItem('token') },
       url: selectedItineraryUrl,
@@ -73,6 +74,7 @@ MyTinerary.ItineraryEvents = (function(){
     })
     .done(function() {
       console.log('success: POSTed new event');
+      _getEventsHandler(_getEventsUrl(),$itineraryEvents);
     })
     .fail(function() {
       console.log("error POSTing new event");
@@ -89,7 +91,7 @@ MyTinerary.ItineraryEvents = (function(){
     return coreDomain + '/itineraries/' + itineraryId + '/events/' + eventId;
   };
 
-  var _getEventsUrl = function(target) {
+  var _getEventsUrl = function() {
     var itineraryId = $('#itinerary-header-name').children().attr('data-itinerary-id');
     return coreDomain + '/itineraries/' + itineraryId + '/events';
   };
@@ -99,7 +101,7 @@ MyTinerary.ItineraryEvents = (function(){
   ///////////////////////////////////////////////////////////////////////////////////
 
   // Handler for deleting event from DB
-  var _deleteEventHandler = function(target){
+  var _deleteEventHandler = function(target, $itineraryEvents){
     var eventUrl = _getEventUrl(target);
     $.ajax({
       headers: { Authorization: 'Token token=' + localStorage.getItem('token') },
@@ -108,6 +110,7 @@ MyTinerary.ItineraryEvents = (function(){
     })
     .done(function() {
       console.log("success: deleted event");
+      _getEventsHandler(_getEventsUrl(),$itineraryEvents);
     })
     .fail(function() {
       console.log("error deleting event");

@@ -3,41 +3,28 @@
 var itineraryList = MyTinerary.ItineraryList;
 var itinerary = MyTinerary.Itinerary;
 var itineraryEvents = MyTinerary.ItineraryEvents;
+var userLogin = MyTinerary.Login;
 
 // Document ready
 $(document).ready(function(){
+
   $('#main-page').hide();
 
-  $(function(){
-    $('#sign-in').on('click', function(e){
-      e.preventDefault();
-      $.ajax(coreDomain + '/login',{
-        contentType: 'application/json',
-        processData: false,
-        data: JSON.stringify({
-          credentials: {
-            email: $('#email').val(),
-            password: $('#password').val()
-          }
-        }),
-        dataType: "json",
-        method: "POST"
-      }).done(function(data, textStatus) {
-        localStorage.setItem('token', data.token);
-        localStorage.getItem('token');
-        $('#loginModal').removeClass('show');
-        itineraryList.getItineraryListHandler($itinerariesList);
-        $('#itinerary-btn-container, #leftbar-create-event, #rename-itinerary-container').hide();
-        $('#main-page').show();
-      }).fail(function(jqxhr, textStatus, errorThrown){
-        console.log(textStatus);
-        alert('Please check your email and password and try again.');
-      });
-    });
-    $('#cancel-btn, #x-btn').click(function(e){
-      e.preventDefault();
-      $('#loginModal').removeClass('show');
-    });
+  $('#login-nav-btn').click(function(){
+    $('#nav-btns').children().removeClass('active');
+    $(this).addClass('active');
+    $('#loginModal').addClass('show');
+  });
+
+  $('#sign-in').on('click', function(e){
+    e.preventDefault();
+    userLogin.authenticateUser($itinerariesList);
+    $('#nav-btns').children().removeClass('active');
+  });
+
+  $('#cancel-btn, #x-btn').click(function(e){
+    e.preventDefault();
+    $('#loginModal').removeClass('show');
   });
 
   ////////////////////////////////////////////////////////////////////////////
@@ -97,26 +84,26 @@ $(document).ready(function(){
   // Hide certains elements on page load:
   ($itineraryBtnContainer, $leftbarCreateEvent, $renameItineraryContainer).hide();
 
-  // Navbar dropdown
-  // $('.dropdown-toggle').toggle();
-
   // Show Selected Itinerary :: Inserts Itinerary ID into Header
   $itinerariesList.on('click', $itineraryListItem, function(e){
     e.preventDefault();
-    // Clear/Add Active Styling on List Item(s)
-      $(this).children().removeClass('active');
-      $(event.target).addClass('active');
-    // Display Itinerary Editing Buttons
-      $itineraryBtnContainer.show();
-    // Get Itinerary ID for Header & Render Header
-      var selectedItineraryName = ($(event.target).html());
-      var $selectedItineraryId = ($(event.target).attr('data-itinerary'));
-      $itineraryHeader.html("").hide().append(itinerary.renderItineraryName(selectedItineraryName, $selectedItineraryId)).fadeIn(500);
-      var setItineraryUrl = coreDomain + '/itineraries/' + $selectedItineraryId + '/events';
-      $itineraryEvents.html("");
 
-      // Call function to render Events
-      itineraryEvents.getEvents(setItineraryUrl, $itineraryEvents);
+    // Clear/Add Active Styling on List Item(s)
+    $(this).children().removeClass('active');
+    $(event.target).addClass('active');
+
+    // Display Itinerary Editing Buttons
+    $itineraryBtnContainer.show();
+
+    // Get Itinerary ID for Header & Render Header
+    var selectedItineraryName = ($(event.target).html());
+    var $selectedItineraryId = ($(event.target).attr('data-itinerary'));
+    $itineraryHeader.html("").hide().append(itinerary.renderItineraryName(selectedItineraryName, $selectedItineraryId)).fadeIn(500);
+    var setItineraryUrl = coreDomain + '/itineraries/' + $selectedItineraryId + '/events';
+    $itineraryEvents.html("");
+
+    // Call function to render Events
+    itineraryEvents.getEvents(setItineraryUrl, $itineraryEvents);
   });
 
   // Add Event Btn: Shows Create Event Form, Hides Itinerary List
@@ -129,18 +116,16 @@ $(document).ready(function(){
   // Create New Itinerary
   $itinerarySubmitBtn.click(function(e){
     e.preventDefault();
-    itinerary.createItinerary(itineraryList.itinerariesUrl,$itineraryNameInput);
-    itineraryList.getItineraryListHandler($itinerariesList);
+    itinerary.createItinerary(itineraryList.itinerariesUrl,$itineraryNameInput, $itinerariesList);
   });
 
   // Delete Itinerary
   $deleteItineraryBtn.click(function(e){
     e.preventDefault();
-    itinerary.deleteItineraryHandler($itineraryEvents, $itineraryHeader);
-    setTimeout(function(){itineraryList.getItineraryListHandler($itinerariesList);}, 500);
+    itinerary.deleteItineraryHandler($itineraryEvents, $itineraryHeader, $itinerariesList);
   });
 
-  // Edit Itinerary Name
+  // Edit Itinerary Name: Reveals Form
   $renameItineraryBtn.click(function(e){
     e.preventDefault();
     $itineraryBtns.hide();
@@ -152,17 +137,14 @@ $(document).ready(function(){
     e.preventDefault();
     $renameItineraryContainer.fadeOut(400);
     setTimeout(function(){$itineraryBtns.fadeIn(500);}, 500);
-    itinerary.renameItineraryHandler($renameItineraryInput, $itineraryHeader);
-    setTimeout(function(){itineraryList.getItineraryListHandler($itinerariesList);}, 500);
+    itinerary.renameItineraryHandler($renameItineraryInput, $itineraryHeader, $itinerariesList);
   });
 
   // Rename Itinerary CANCEL
   $renameCancelBtn.click(function(e){
     e.preventDefault();
     $renameItineraryContainer.fadeOut(400);
-    setTimeout(function(){
-      $itineraryBtns.fadeIn(500);
-    }, 500);
+    setTimeout(function(){$itineraryBtns.fadeIn(500);}, 500);
   });
 
   // Create Event
@@ -170,8 +152,7 @@ $(document).ready(function(){
     e.preventDefault();
     $leftbarCreateEvent.hide();
     $leftbarItinerariesList.fadeIn(700);
-    itineraryEvents.createEvent($eventTitleInput,$eventDateInput,$eventStartInput,$eventEndInput,$eventLocationInput,$eventAttendeesInput,$eventDescInput,$imageInput);
-    setTimeout(function(){itineraryEvents.getEvents(itineraryEvents.getEventsUrl(),$itineraryEvents);}, 100);
+    itineraryEvents.createEvent($eventTitleInput,$eventDateInput,$eventStartInput,$eventEndInput,$eventLocationInput,$eventAttendeesInput,$eventDescInput,$imageInput,$itineraryEvents);
     setTimeout(function(){$allInputForms.val("");}, 100);
   });
 
@@ -185,8 +166,7 @@ $(document).ready(function(){
   // Delete Event
   $itineraryEvents.on('click', $deleteEventBtn, function(e){
     e.preventDefault();
-    itineraryEvents.deleteEvent(event.target);
-    setTimeout(function(){itineraryEvents.getEvents(itineraryEvents.getEventsUrl(),$itineraryEvents);}, 100);
+    itineraryEvents.deleteEvent(event.target, $itineraryEvents);
   });
 
 });
