@@ -89,6 +89,17 @@ body {
 STYLING
 ********************/
 
+.jumbotron {
+  background-image: url('../machu-pichu-header.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+#subtitle {
+  color: black;
+}
+
 .modal-header {
   font-family: 'Vollkorn', serif;
   color: #2c3e50;
