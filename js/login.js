@@ -31,13 +31,33 @@ MyTinerary.Login = (function(){
       });
   }
 
-  var _createUser = function(){
+  // var _createUserHandler = function(){
 
-  }
+  //   var registerUrl = coreDomain + '/register';
+  //   var newUser = {user: {
+  //     first_name: $firstName.val();
+  //     last_name: $lastName.val();
+  //     email: $email.val();
+  //     password: $password.val();
+  //   }};
 
-  var _renderUserName = function(){
+  //   $.ajax({
+  //     url: registerUrl,
+  //     type: 'POST',
+  //     dataType: 'json',
+  //     data: newUser,
+  //   })
+  //   .done(function() {
+  //     console.log("success: Create new user.");
+  //   })
+  //   .fail(function() {
+  //     console.log("error creating new user");
+  //   })
+  // }
 
-  }
+  // var _renderUserName = function(){
+
+  // }
 
   return {
     authenticateUser: _authenticateUser
