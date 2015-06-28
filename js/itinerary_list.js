@@ -1,7 +1,5 @@
-
-
 var MyTinerary = MyTinerary || {};
-MyTinerary.ItineraryList = (function(){
+MyTinerary.ItineraryList = (function() {
   //////////////////////////////////////////////////////////////////////////////////////
   // USER STORY : Display list of user's itineraries in leftbar
   //////////////////////////////////////////////////////////////////////////////////////
@@ -10,10 +8,10 @@ MyTinerary.ItineraryList = (function(){
   var _allItinerariesUrl = coreDomain + '/itineraries';
 
   // Function to format itinerary names correctly (from JSON)
-  var renderItineraryList = function(response){
+  var renderItineraryList = function(response) {
     var itineraryTitles = "";
-    response.forEach(function(itinerary){
-    itineraryTitles += '<a href="#" id="itinerary-item" class="list-group-item itinerary-li" data-itinerary="' + itinerary.id + '">' + itinerary.name + '</a>';
+    response.forEach(function(itinerary) {
+      itineraryTitles += '<a href="#" id="itinerary-item" class="list-group-item itinerary-li" data-itinerary="' + itinerary.id + '">' + itinerary.name + '</a>';
     });
 
     return itineraryTitles;
@@ -23,19 +21,21 @@ MyTinerary.ItineraryList = (function(){
   var _getItineraryListHandler = function($itinerariesList) {
     $itinerariesList.html("");
     $.ajax({
-      headers: { Authorization: 'Token token=' + localStorage.getItem('token') },
+      headers: {
+        Authorization: 'Token token=' + localStorage.getItem('token')
+      },
       url: _allItinerariesUrl,
       type: 'GET',
     })
-    .done(function(response) {
-      console.log('success: got all Itinerary Names for Leftbar');
-      var itineraryList = renderItineraryList(response);
-      $itinerariesList.html("").hide().append(itineraryList).fadeIn(300);
-    })
-    .fail(function() {
-      console.log("error getting Itinerary names");
-      alert('Apologies, but it looks like something went wrong. Please reload page and try again.');
-    });
+      .done(function(response) {
+        console.log('success: got all Itinerary Names for Leftbar');
+        var itineraryList = renderItineraryList(response);
+        $itinerariesList.html("").hide().append(itineraryList).fadeIn(300);
+      })
+      .fail(function() {
+        console.log("error getting Itinerary names");
+        alert('Apologies, but it looks like something went wrong. Please reload page and try again.');
+      });
   };
 
   return {
@@ -43,5 +43,3 @@ MyTinerary.ItineraryList = (function(){
     itinerariesUrl: _allItinerariesUrl
   };
 })();
-
-

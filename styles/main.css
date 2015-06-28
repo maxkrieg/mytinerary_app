@@ -88,8 +88,12 @@ body {
 /********************
 STYLING
 ********************/
+body {
+  font-family: 'Open Sans', sans-serif;
+}
 
 .jumbotron {
+  font-family: 'Open Sans', sans-serif;
   background-image: url('../machu-pichu-header.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -101,7 +105,7 @@ STYLING
 }
 
 .modal-header {
-  font-family: 'Vollkorn', serif;
+  font-family: 'Open Sans', sans-serif;
   color: #2c3e50;
 }
 
