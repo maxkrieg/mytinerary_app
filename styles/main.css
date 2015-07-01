@@ -11,6 +11,10 @@ body {
   padding-left: 20px;
 }
 
+.home-heading {
+  text-align: center;
+}
+
 .container {
   height: 100%;
   margin-bottom: 50px;

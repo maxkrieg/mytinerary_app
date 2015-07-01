@@ -7,12 +7,19 @@ var userLogin = MyTinerary.Login;
 // Document ready
 $(document).ready(function() {
 
-  $('#main-page').hide();
+  $('#main-page, #itineraries-list-dropdown').hide();
 
   $('#login-nav-btn').click(function() {
     $('#nav-btns').children().removeClass('active');
     $(this).addClass('active');
     $('#loginModal').addClass('show');
+  });
+
+  $('.register-btn').click(function() {
+    $('#nav-btns').children().removeClass('active');
+    $(this).addClass('active');
+    $('#loginModal').removeClass('show');
+    $('#registerModal').addClass('show');
   });
 
   $('#sign-in').on('click', function(e) {
@@ -21,9 +28,9 @@ $(document).ready(function() {
     $('#nav-btns').children().removeClass('active');
   });
 
-  $('#cancel-btn, #x-btn').click(function(e) {
+  $('.cancel-btn, #x-btn').click(function(e) {
     e.preventDefault();
-    $('#loginModal').removeClass('show');
+    $('#loginModal, #registerModal').removeClass('show');
   });
 
   ////////////////////////////////////////////////////////////////////////////

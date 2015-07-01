@@ -10,7 +10,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" rel="stylesheet">
-
+  <link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="styles/main.css">
 </head>
@@ -38,17 +38,15 @@
 
         <ul class="nav navbar-nav navbar-right" id="nav-btns">
           <li id="login-nav-btn"><a href="#">Login<span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Register</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <li class="register-btn"><a href="#">Register</a></li>
+          <li class="dropdown" id="itineraries-list-dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Itineraries <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li><a href="#">Itinerary 1</a></li>
+              <li><a href="#">Itinerary 2</a></li>
+              <li><a href="#">Itinerary 3</a></li>
               <li class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <li class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
+              <li><a href="#">Create New Itinerary</a></li>
             </ul>
           </li>
         </ul>
@@ -69,40 +67,94 @@
   <!-- JUMBOTRON -->
   <div class="jumbotron">
     <h1>mytinerary <small id="subtitle">make the perfect plan.</small></h1>
-    <p>Paragraph</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a></p>
+    <p>You love to organization.  We do too.</p>
+  <!--   <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a></p> -->
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 home-heading">
+        <h1><i class="fa fa-sign-in"></i></h1>
+        <h2>Sign Up</h2>
+        <p>Sign up and login to get started, all you need is an email and password.</p>
+      </div>
+      <div class="col-md-4 home-heading">
+        <h1><i class="fa fa-list-alt"></i></h1>
+        <h2>Make an Itinerary</h2>
+        <p>Use the mytinerary easy-to-use interface to create custom itineraries.  Upload a photo, set a time, date, and any other details.</p>
+     </div>
+      <div class="col-md-4 home-heading">
+        <h1><i class="fa fa-bullhorn"></i></h1>
+        <h2>Share with Friends</h2>
+        <p>Boom.  Now you have a clean, easy to read itinerary to share with friends.</p>
+      </div>
+    </div>
   </div>
 
   <!--LOGIN MODAL-->
   <div id="loginModal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="x-btn">×</button>
-            <h1 class="text-center" id="mytinerary-modal">mytinerary</h1>
-            <h2 class="text-center">Login</h2>
-        </div>
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="x-btn">×</button>
+              <h1 class="text-center" id="mytinerary-modal">mytinerary</h1>
+              <h2 class="text-center">Login</h2>
+          </div>
 
-        <div class="modal-body">
-            <form class="form col-md-12 center-block">
-              <div class="form-group">
-                <input type="text" class="form-control input-lg" placeholder="Email" id="email">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control input-lg" placeholder="Password" id="password">
-              </div>
-              <div class="form-group">
-                <button class="btn btn-primary btn-lg btn-block" id="sign-in">Sign In</button>
-                <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
-              </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <div class="col-md-12">
-            <button class="btn" data-dismiss="modal" aria-hidden="true" id="cancel-btn">Cancel</button>
-        </div>
-        </div>
+          <div class="modal-body">
+              <form class="form col-md-12 center-block">
+                <div class="form-group">
+                  <input type="text" class="form-control input-lg" placeholder="Email" id="email">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control input-lg" placeholder="Password" id="password">
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary btn-lg btn-block" id="sign-in">Sign In</button>
+                  <span class="pull-right register-btn"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
+                </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <div class="col-md-12">
+              <button class="btn cancel-btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          </div>
+          </div>
+      </div>
     </div>
+  </div>
+
+
+
+  <!--REGISTER MODAL-->
+  <div id="registerModal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="x-btn">×</button>
+              <h1 class="text-center" id="mytinerary-modal">mytinerary</h1>
+              <h2 class="text-center">Register</h2>
+          </div>
+
+          <div class="modal-body">
+              <form class="form col-md-12 center-block">
+                <div class="form-group">
+                  <input type="text" class="form-control input-lg" placeholder="Email" id="email">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control input-lg" placeholder="Password" id="password">
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary btn-lg btn-block" id="sign-in">Submit</button>
+                </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <div class="col-md-12">
+              <button class="btn cancel-btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          </div>
+          </div>
+      </div>
     </div>
   </div>
 
