@@ -1,11 +1,9 @@
-var coreDomain = 'http://localhost:3000';
-
 var MyTinerary = MyTinerary || {};
 
-MyTinerary.Login = (function(){
+MyTinerary.Login = (function() {
 
-  var _authenticateUser = function($itinerariesList){
-    $.ajax(coreDomain + '/login',{
+  var _authenticateUser = function($itinerariesList) {
+    $.ajax(coreDomain + '/login', {
       contentType: 'application/json',
       processData: false,
       data: JSON.stringify({
@@ -16,30 +14,32 @@ MyTinerary.Login = (function(){
       }),
       dataType: "json",
       method: "POST"
+    })
+      .done(function(data, textStatus) {
+        localStorage.setItem('token', data.token);
+        localStorage.getItem('token');
+        $('#loginModal').removeClass('show');
+        itineraryList.getItineraryListHandler($itinerariesList);
+        $('#itinerary-btn-container, #leftbar-create-event, #rename-itinerary-container').hide();
+        $('#main-page').show();
       })
-    .done(function(data, textStatus) {
-      localStorage.setItem('token', data.token);
-      localStorage.getItem('token');
-      $('#loginModal').removeClass('show');
-      itineraryList.getItineraryListHandler($itinerariesList);
-      $('#itinerary-btn-container, #leftbar-create-event, #rename-itinerary-container').hide();
-      $('#main-page').show();
-      })
-    .fail(function(jqxhr, textStatus, errorThrown){
+      .fail(function(jqxhr, textStatus, errorThrown) {
         console.log(textStatus);
         alert('Please check your email and password and try again.');
       });
-  }
+  };
 
-  var _createUserHandler = function(){
+  var _createUserHandler = function() {
 
     var registerUrl = coreDomain + '/register';
-    var newUser = {user: {
-      first_name: $firstName.val();
-      last_name: $lastName.val();
-      email: $email.val();
-      password: $password.val();
-    }};
+    var newUser = {
+      user: {
+        first_name: $firstName.val(),
+        last_name: $lastName.val(),
+        email: $email.val(),
+        password: $password.val()
+      }
+    };
 
     $.ajax({
       url: registerUrl,
@@ -47,20 +47,20 @@ MyTinerary.Login = (function(){
       dataType: 'json',
       data: newUser,
     })
-    .done(function() {
-      console.log("success: Create new user.");
-    })
-    .fail(function() {
-      console.log("error creating new user");
-    })
-  }
+      .done(function() {
+        console.log("success: Create new user.");
+      })
+      .fail(function() {
+        console.log("error creating new user");
+      });
+  };
 
-  var _renderUserName = function(){
+  var _renderUserName = function() {
 
-  }
+  };
 
   return {
     authenticateUser: _authenticateUser
-  }
+  };
 
 })();

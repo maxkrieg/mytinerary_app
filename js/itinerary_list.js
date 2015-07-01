@@ -1,3 +1,5 @@
+var coreDomain = 'http://localhost:3000';
+
 var MyTinerary = MyTinerary || {};
 MyTinerary.ItineraryList = (function() {
   //////////////////////////////////////////////////////////////////////////////////////
