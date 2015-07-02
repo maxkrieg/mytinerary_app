@@ -4,11 +4,17 @@ POSITIONING
 /* Open Sans Font is awesome */
 
 body {
-  padding-top: 70px;
+  padding-top: 55px;
 }
 
 .jumbotron {
   padding-left: 20px;
+  height: 400px;
+}
+
+#home-page-headers {
+  margin-top: 50px;
+  margin-bottom: 200px
 }
 
 .home-heading {
@@ -87,6 +93,10 @@ body {
   margin-bottom: 20px;
 }
 
+#footer {
+  text-align: center;
+}
+
 
 
 /********************
@@ -95,6 +105,19 @@ STYLING
 body {
   font-family: 'Open Sans', sans-serif;
 }
+
+#navbar {
+  background: #c0392b;
+}
+
+#navbar-brand, #login-nav-link, #register-nav-link, #itineraries-nav-btn {
+  color: white;
+}
+
+#navbar-brand:hover, #login-nav-link:hover, #register-nav-link:hover, #itineraries-nav-btn:hover {
+  color: grey;
+}
+
 
 .jumbotron {
   font-family: 'Open Sans', sans-serif;
@@ -115,11 +138,6 @@ body {
 
 #mytinerary-modal {
   font-weight: bold;
-}
-
-#itinerary-item {
-  background: #2c3e50;
-  color: white;
 }
 
 #main {
@@ -152,5 +170,11 @@ img {
   box-shadow: 2px 2px grey;
 }
 
+
+#footer {
+  color: #6D6D6D;
+  background: #E9E9E9;
+  padding: 20px 0;
+}
 
 

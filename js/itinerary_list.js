@@ -13,9 +13,8 @@ MyTinerary.ItineraryList = (function() {
   var renderItineraryList = function(response) {
     var itineraryTitles = "";
     response.forEach(function(itinerary) {
-      itineraryTitles += '<a href="#" id="itinerary-item" class="list-group-item itinerary-li" data-itinerary="' + itinerary.id + '">' + itinerary.name + '</a>';
+      itineraryTitles += '<li><a href="#" id="itinerary-item" class="itinerary-li" data-itinerary="' + itinerary.id + '">' + itinerary.name + '</a></li>';
     });
-
     return itineraryTitles;
   };
 
@@ -32,7 +31,7 @@ MyTinerary.ItineraryList = (function() {
       .done(function(response) {
         console.log('success: got all Itinerary Names for Leftbar');
         var itineraryList = renderItineraryList(response);
-        $itinerariesList.html("").hide().append(itineraryList).fadeIn(300);
+        $itinerariesList.html("").append(itineraryList);
       })
       .fail(function() {
         console.log("error getting Itinerary names");

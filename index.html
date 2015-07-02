@@ -18,7 +18,7 @@
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-default navbar-fixed-top">
+  <nav class="navbar navbar-default navbar-fixed-top" id="navbar">
 
     <div class="container-fluid">
 
@@ -30,23 +30,21 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">mytinerary</a>
+        <a class="navbar-brand" id="navbar-brand" href="#">mytinerary</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav navbar-right" id="nav-btns">
-          <li id="login-nav-btn"><a href="#">Login<span class="sr-only">(current)</span></a></li>
-          <li class="register-btn"><a href="#">Register</a></li>
+          <li id="login-nav-btn" class="navbar-item"><a href="#" id="login-nav-link">Login<span class="sr-only">(current)</span></a></li>
+          <li class="register-btn navbar-item"><a href="#" id="register-nav-link">Register</a></li>
           <li class="dropdown" id="itineraries-list-dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Itineraries <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="itineraries-nav-btn">Itineraries <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu" id="itinerary-list">
               <li><a href="#">Itinerary 1</a></li>
               <li><a href="#">Itinerary 2</a></li>
               <li><a href="#">Itinerary 3</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Create New Itinerary</a></li>
             </ul>
           </li>
         </ul>
@@ -65,31 +63,36 @@
   </nav>
 
   <!-- JUMBOTRON -->
-  <div class="jumbotron">
-    <h1>mytinerary <small id="subtitle">make the perfect plan.</small></h1>
-    <p>You love to organization.  We do too.</p>
-  <!--   <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a></p> -->
-  </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 home-heading">
-        <h1><i class="fa fa-sign-in"></i></h1>
-        <h2>Sign Up</h2>
-        <p>Sign up and login to get started, all you need is an email and password.</p>
+
+    <div class="jumbotron">
+      <div id="jumbotron-text">
+      <h1>mytinerary <small id="subtitle">make the perfect plan.</small></h1>
+      <p>You love organization.  We do too.</p>
       </div>
-      <div class="col-md-4 home-heading">
-        <h1><i class="fa fa-list-alt"></i></h1>
-        <h2>Make an Itinerary</h2>
-        <p>Use the mytinerary easy-to-use interface to create custom itineraries.  Upload a photo, set a time, date, and any other details.</p>
-     </div>
-      <div class="col-md-4 home-heading">
-        <h1><i class="fa fa-bullhorn"></i></h1>
-        <h2>Share with Friends</h2>
-        <p>Boom.  Now you have a clean, easy to read itinerary to share with friends.</p>
+    <!--   <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a></p> -->
+    </div>
+    <!-- HOME PAGE HEADERS -->
+    <div class="container" id="home-page-headers">
+      <div class="row">
+        <div class="col-md-4 home-heading">
+          <h1><i class="fa fa-sign-in"></i></h1>
+          <h2>Sign Up</h2>
+          <p>Sign up and login to get started, all you need is an email and password.</p>
+        </div>
+        <div class="col-md-4 home-heading">
+          <h1><i class="fa fa-list-alt"></i></h1>
+          <h2>Make an Itinerary</h2>
+          <p>Use the mytinerary easy-to-use interface to create custom itineraries.  Upload a photo, set a time, date, and any other details.</p>
+       </div>
+        <div class="col-md-4 home-heading">
+          <h1><i class="fa fa-bullhorn"></i></h1>
+          <h2>Share with Friends</h2>
+          <p>Boom.  Now you have a clean, easy to read itinerary to share with friends.</p>
+        </div>
       </div>
     </div>
-  </div>
+
 
   <!--LOGIN MODAL-->
   <div id="loginModal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -168,7 +171,6 @@
 
       <!-- LEFTBAR 1: ITINERARY LIST -->
       <div id="leftbar-itineraries-list" class="leftbar col-sm-3">
-        <h3 id="itineraries-list-header" style="font-family: 'Vollkorn', serif; font-weight: bold">Itineraries</h3>
 
         <!-- Form for adding new Itinerary -->
         <label for="add-itinerary">Add Itinerary</label>
@@ -180,7 +182,7 @@
         </div>
 
         <!-- Template Itinerary List -->
-        <div id="itinerary-list" class="list-group">
+        <div class="list-group">
         </div>
 
       </div>
@@ -267,6 +269,18 @@
     </div>
   <!-- Closing tag for #container div -->
   </div>
+
+ <section id="footer">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-12 text-center">
+                  <p>Max Krieg | 2015</p>
+                  <p>Created during General Assembly Web Development Immersive course.</p>
+              </div>
+          </div>
+          <!-- / .row -->
+      </div>
+  </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="js/login.js" type="text/javascript" charset="utf-8" async defer></script>

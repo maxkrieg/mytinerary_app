@@ -10,14 +10,10 @@ $(document).ready(function() {
   $('#main-page, #itineraries-list-dropdown').hide();
 
   $('#login-nav-btn').click(function() {
-    $('#nav-btns').children().removeClass('active');
-    $(this).addClass('active');
     $('#loginModal').addClass('show');
   });
 
   $('.register-btn').click(function() {
-    $('#nav-btns').children().removeClass('active');
-    $(this).addClass('active');
     $('#loginModal').removeClass('show');
     $('#registerModal').addClass('show');
   });
@@ -25,7 +21,6 @@ $(document).ready(function() {
   $('#sign-in').on('click', function(e) {
     e.preventDefault();
     userLogin.authenticateUser($itinerariesList);
-    $('#nav-btns').children().removeClass('active');
   });
 
   $('.cancel-btn, #x-btn').click(function(e) {
