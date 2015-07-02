@@ -36,9 +36,18 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
+        <!-- Navbar Form for creating new itinerary -->
+        <form class="navbar-form navbar-right" role="search" id="leftbar-itineraries-list">
+          <div class="form-group" id="new-itinerary-container">
+            <input type="text" class="form-control" placeholder="Add New Itinerary" id="itinerary-name">
+          </div>
+          <button type="submit" class="btn btn-default" id="itinerary-create-btn">Submit</button>
+        </form>
+
         <ul class="nav navbar-nav navbar-right" id="nav-btns">
           <li id="login-nav-btn" class="navbar-item"><a href="#" id="login-nav-link">Login<span class="sr-only">(current)</span></a></li>
           <li class="register-btn navbar-item"><a href="#" id="register-nav-link">Register</a></li>
+
           <li class="dropdown" id="itineraries-list-dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="itineraries-nav-btn">Itineraries <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu" id="itinerary-list">
@@ -48,29 +57,17 @@
             </ul>
           </li>
         </ul>
-
-    <!--     <form class="navbar-form navbar-right" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form> -->
-
       </div><!-- /.navbar-collapse -->
-
     </div><!-- /.container-fluid for nav-->
-
   </nav>
 
-  <!-- JUMBOTRON -->
-
-
+    <!-- JUMBOTRON -->
     <div class="jumbotron">
       <div id="jumbotron-text">
       <h1>mytinerary <small id="subtitle">make the perfect plan.</small></h1>
       <p>You love organization.  We do too.</p>
       </div>
-    <!--   <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a></p> -->
+      <p><a class="btn btn-primary btn-lg" href="#home-page-headers" role="button">Get Started</a></p>
     </div>
     <!-- HOME PAGE HEADERS -->
     <div class="container" id="home-page-headers">
@@ -168,27 +165,10 @@
   <div class="container wrapper" id="main-page" style="display: none">
 
     <div class="row">
-
-      <!-- LEFTBAR 1: ITINERARY LIST -->
-      <div id="leftbar-itineraries-list" class="leftbar col-sm-3">
-
-        <!-- Form for adding new Itinerary -->
-        <label for="add-itinerary">Add Itinerary</label>
-        <div class="input-group input-group-sm" id="new-itinerary-container">
-          <input type="text" class="form-control" placeholder="Itinerary Name" id="itinerary-name">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button" id="itinerary-create-btn">Create</button>
-          </span>
-        </div>
-
-        <!-- Template Itinerary List -->
-        <div class="list-group">
-        </div>
-
-      </div>
-
       <!-- LEFTBAR 2: NEW EVENT FORM -->
       <div id="leftbar-create-event" class="leftbar col-sm-3">
+
+
         <h4 id="create-event-header">Create New Event</h4>
         <form>
           <div class="form-group form-group-md">
@@ -230,11 +210,15 @@
             <button type="submit" class="btn btn-default btn-sm" id="event-cancel-btn">Cancel</button>
           </div>
         </form>
+
+
+
+
       </div>
 
 
       <!-- MAIN: FULL ITINERARY VIEW -->
-      <div id="main" class="col-sm-9">
+      <div id="main" class="col-sm-12">
         <!-- Button Grouping -->
         <div id="itinerary-btn-container">
           <div class="btn-group btn-group-sm" role="group" aria-label="..." id="itinerary-btns">

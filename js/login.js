@@ -21,7 +21,7 @@ MyTinerary.Login = (function() {
         $('#loginModal').removeClass('show');
         itineraryList.getItineraryListHandler($itinerariesList);
         $('#itinerary-btn-container, #leftbar-create-event, #rename-itinerary-container, #login-nav-btn, .register-btn, #home-page-headers').hide();
-        $('#main-page, #itineraries-list-dropdown').show();
+        $('#main-page, #itineraries-list-dropdown, #leftbar-itineraries-list').show();
       })
       .fail(function(jqxhr, textStatus, errorThrown) {
         console.log(textStatus);

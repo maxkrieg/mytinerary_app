@@ -7,7 +7,7 @@ var userLogin = MyTinerary.Login;
 // Document ready
 $(document).ready(function() {
 
-  $('#main-page, #itineraries-list-dropdown').hide();
+  $('#main-page, #itineraries-list-dropdown, #leftbar-itineraries-list').hide();
 
   $('#login-nav-btn').click(function() {
     $('#loginModal').addClass('show');
@@ -110,7 +110,6 @@ $(document).ready(function() {
   // Add Event Btn: Shows Create Event Form, Hides Itinerary List
   $addEventBtn.click(function(e) {
     e.preventDefault();
-    $leftbarItinerariesList.hide();
     $leftbarCreateEvent.fadeIn(500);
   });
 
@@ -156,7 +155,6 @@ $(document).ready(function() {
   $eventSubmitBtn.click(function(e) {
     e.preventDefault();
     $leftbarCreateEvent.hide();
-    $leftbarItinerariesList.fadeIn(700);
     itineraryEvents.createEvent($eventTitleInput, $eventDateInput, $eventStartInput, $eventEndInput, $eventLocationInput, $eventAttendeesInput, $eventDescInput, $imageInput, $itineraryEvents);
     setTimeout(function() {
       $allInputForms.val("");
@@ -167,7 +165,6 @@ $(document).ready(function() {
   $eventCancelBtn.click(function(e) {
     e.preventDefault();
     $leftbarCreateEvent.hide();
-    $leftbarItinerariesList.fadeIn(700);
   });
 
   // Delete Event

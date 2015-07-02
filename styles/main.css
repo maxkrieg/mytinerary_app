@@ -75,12 +75,12 @@ body {
 
 /* Leftbar 1: Itinerary List */
 
-#itineraries-list-header {
+/*#itineraries-list-header {
   margin-top: 20px;
-}
+}*/
 
 #itinerary-create-btn {
-  margin-bottom: 20px;
+/*  margin-bottom: 20px;*/
 }
 
 
@@ -140,9 +140,9 @@ body {
   font-weight: bold;
 }
 
-#main {
+/*#main {
   color: #2c3e50;
-}
+}*/
 
 .btn {
   border: none;
