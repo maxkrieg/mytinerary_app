@@ -1,7 +1,7 @@
 var MyTinerary = MyTinerary || {};
 
 MyTinerary.Login = (function() {
-
+  var coreDomain = 'https://afternoon-shore-8644.herokuapp.com/';
   var _authenticateUser = function($itinerariesList) {
     $.ajax(coreDomain + '/login', {
       contentType: 'application/json',
