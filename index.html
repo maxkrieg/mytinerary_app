@@ -61,8 +61,7 @@
     </div><!-- /.container-fluid for nav-->
   </nav>
 
-    <!-- JUMBOTRON -->
-    <div id="home-page-elements">
+      <!-- JUMBOTRON -->
       <div class="jumbotron">
         <div id="jumbotron-text">
           <h1>mytinerary <small id="subtitle">make the perfect plan.</small></h1>
@@ -72,24 +71,23 @@
       <!-- HOME PAGE HEADERS -->
       <div class="container" id="home-page-headers">
         <div class="row">
-          <div class="col-md-4 home-heading">
+          <div class="col-sm-4 home-heading">
             <h1><i class="fa fa-sign-in"></i></h1>
             <h2>Sign Up</h2>
             <p>Sign up and login to get started, all you need is an email and password.</p>
           </div>
-          <div class="col-md-4 home-heading">
+          <div class="col-sm-4 home-heading">
             <h1><i class="fa fa-list-alt"></i></h1>
             <h2>Make an Itinerary</h2>
             <p>Use the mytinerary easy-to-use interface to create custom itineraries.  Upload a photo, set a time, date, and any other details.</p>
          </div>
-          <div class="col-md-4 home-heading">
+          <div class="col-sm-4 home-heading">
             <h1><i class="fa fa-bullhorn"></i></h1>
             <h2>Share with Friends</h2>
             <p>Boom.  Now you have a clean, easy to read itinerary to share with friends.</p>
           </div>
         </div>
       </div>
-    </div>
 
 
   <!--LOGIN MODAL-->
@@ -103,7 +101,7 @@
           </div>
 
           <div class="modal-body">
-              <form class="form col-md-12 center-block">
+              <form class="form col-sm-12 center-block">
                 <div class="form-group">
                   <input type="text" class="form-control input-lg" placeholder="Email" id="email">
                 </div>
@@ -117,7 +115,7 @@
               </form>
           </div>
           <div class="modal-footer">
-              <div class="col-md-12">
+              <div class="col-sm-12">
               <button class="btn cancel-btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
           </div>
           </div>
@@ -138,7 +136,7 @@
           </div>
 
           <div class="modal-body">
-              <form class="form col-md-12 center-block">
+              <form class="form col-sm-12 center-block">
                 <div class="form-group">
                   <input type="text" class="form-control input-md" placeholder="First Name" id="first-name">
                 </div>
@@ -158,121 +156,142 @@
           </div>
 
           <div class="modal-footer">
-              <div class="col-md-12">
+            <div class="col-sm-12">
               <button class="btn cancel-btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-          </div>
-          </div>
-      </div>
-    </div>
-  </div>
-
-
-
-
-  <!-- MAIN VIEW WRAPPER -->
-  <div class="container wrapper" id="main-page" style="display: none">
-
-    <div class="row">
-      <!-- LEFTBAR 2: NEW EVENT FORM -->
-      <div id="leftbar-create-event" class="leftbar col-sm-3">
-
-
-        <h4 id="create-event-header">Create New Event</h4>
-        <form>
-          <div class="form-group form-group-md">
-            <label for="event-title">Event Title</label>
-            <input type="" class="form-control create-event-input" id="event-title" placeholder="Enter title">
-          </div>
-          <div class="form-group form-group-md">
-            <label for="input-date">Date</label>
-            <input type="date" class="form-control create-event-input" id="event-date" placeholder="Date">
-          </div>
-          <div class="form-group form-group-md">
-            <label for="end-time">Start Time</label>
-            <input type="time" class="form-control create-event-input" id="start-time" placeholder="Start Time">
-          </div>
-          <div class="form-group form-group-md">
-            <label for="end-time">End Time</label>
-            <input type="time" class="form-control create-event-input" id="end-time" placeholder="End Time">
-          </div>
-          <div class="form-group form-group-md">
-            <label for="location">Location</label>
-            <input type="" class="form-control create-event-input" id="location" placeholder="Location">
-          </div>
-          <div class="form-group form-group-md">
-            <label for="attendees">Attendees</label>
-            <input type="" class="form-control create-event-input" id="attendees" placeholder="Attendees">
-          </div>
-          <div class="form-group form-group-md">
-            <label for="description">Description</label>
-            <textarea class="form-control create-event-input" rows="3" id="desc"></textarea>
-          </div>
-
-          <div class="form-group form-group-md">
-            <label for="upload-image">Upload Event Image</label>
-            <input type="file" id="upload-image" class="create-event-input">
-            <p class="help-block">Image size must be less than 100MB.</p>
-          </div>
-          <div class="btn-group" role="group" aria-label="..." id="event-create-btns">
-            <button type="submit" class="btn btn-default btn-sm" id="event-submit-btn">Submit</button>
-            <button type="submit" class="btn btn-default btn-sm" id="event-cancel-btn">Cancel</button>
-          </div>
-        </form>
-
-
-
-
-      </div>
-
-
-      <!-- MAIN: FULL ITINERARY VIEW -->
-      <div id="main" class="col-sm-10 col-sm-offset-1">
-        <!-- Button Grouping -->
-        <div id="itinerary-btn-container">
-          <div class="btn-group btn-group-sm" role="group" aria-label="..." id="itinerary-btns">
-            <button type="button" class="btn btn-default" id="add-event-btn">Add Event</button>
-            <button type="button" class="btn btn-default" id="edit-name-btn">Rename</button>
-            <button type="button" class="btn btn-default" id="delete-itinerary-btn">Delete</button>
-          </div>
-
-          <div class="input-group input-group-sm" id="rename-itinerary-container">
-            <input type="text" class="form-control" placeholder="New Name" id="rename-itinerary-input">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button" id="rename-submit-btn">Submit</button>
-              <button class="btn btn-default" type="button" id="cancel-rename-btn">Cancel</button>
-            </span>
-          </div>
-        </div>
-
-        <div id="itinerary-container">
-          <!-- Template Full Itinerary View -->
-          <div id="itinerary-header-name">
-            <h2 style="font-weight: bold; text-align: center; margin-bottom: 400px;">Select an Itinerary to View or Create a New Itinerary    <i class="fa fa-arrow-circle-up"></i></h2>
-          </div>
-          <div class="list-group" id="itinerary-body-events">
-            <div id="current-event">
             </div>
           </div>
-        <!-- Closing for itinerary container -->
-        </div>
-      <!-- Closing tag for #main div -->
       </div>
-    <!-- Closing tag for #row div -->
     </div>
-
-
-  <!-- Closing tag for #container div -->
   </div>
 
-  <div id="footer">
-<!--       <div class="container">
+
+
+
+
+      <!-- LEFTBAR 2: NEW EVENT FORM -->
+      <!-- <div id="leftbar-create-event" class="leftbar col-sm-3"> -->
+
+  <div id="leftbar-create-event" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 id="create-event-header">Create New Event</h4>
+        </div>
+
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="form-group form-group-md">
+                  <label for="event-title">Event Title</label>
+                  <input type="" class="form-control create-event-input" id="event-title" placeholder="Enter title">
+                </div>
+                <div class="form-group form-group-md">
+                  <label for="input-date">Date</label>
+                  <input type="date" class="form-control create-event-input" id="event-date" placeholder="Date">
+                </div>
+                <div class="form-group form-group-md">
+                  <label for="end-time">Start Time</label>
+                  <input type="time" class="form-control create-event-input" id="start-time" placeholder="Start Time">
+                </div>
+                <div class="form-group form-group-md">
+                  <label for="end-time">End Time</label>
+                  <input type="time" class="form-control create-event-input" id="end-time" placeholder="End Time">
+                </div>
+                <div class="form-group form-group-md">
+                  <label for="location">Location</label>
+                  <input type="" class="form-control create-event-input" id="location" placeholder="Location">
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="form-group form-group-md">
+                  <label for="attendees">Attendees</label>
+                  <input type="" class="form-control create-event-input" id="attendees" placeholder="Attendees">
+                </div>
+                <div class="form-group form-group-md">
+                  <label for="description">Description</label>
+                  <textarea class="form-control create-event-input" rows="3" id="desc"></textarea>
+                </div>
+                <div class="form-group form-group-md">
+                  <label for="upload-image">Upload Event Image</label>
+                  <input type="file" id="upload-image" class="create-event-input">
+                  <p class="help-block">Image size must be less than 100MB.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div class="col-xs-12">
+            <div class="btn-group" role="group" aria-label="..." id="event-create-btns">
+              <button type="submit" class="btn btn-default btn-sm" id="event-submit-btn">Submit</button>
+              <button type="submit" class="btn btn-default btn-sm" id="event-cancel-btn">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+   </div>
+
+
+      <!-- </div> -->
+
+    <!-- MAIN VIEW WRAPPER -->
+    <div class="container wrapper" id="main-page" style="display: none">
+
+      <div class="row">
+      <!-- MAIN: FULL ITINERARY VIEW -->
+        <div id="main" class="col-sm-10 col-sm-offset-1">
+        <!-- Button Grouping -->
+          <div id="itinerary-btn-container">
+            <div class="btn-group btn-group-sm" role="group" aria-label="..." id="itinerary-btns">
+              <button type="button" class="btn btn-default" id="add-event-btn">Add Event</button>
+              <button type="button" class="btn btn-default" id="edit-name-btn">Rename</button>
+              <button type="button" class="btn btn-default" id="delete-itinerary-btn">Delete</button>
+            </div>
+
+            <div class="input-group input-group-sm" id="rename-itinerary-container">
+              <input type="text" class="form-control" placeholder="New Name" id="rename-itinerary-input">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" id="rename-submit-btn">Submit</button>
+                <button class="btn btn-default" type="button" id="cancel-rename-btn">Cancel</button>
+              </span>
+            </div>
+          </div>
+
+          <div id="itinerary-container">
+            <!-- Template Full Itinerary View -->
+            <div id="itinerary-header-name">
+              <h2 style="font-weight: bold; text-align: center; margin-bottom: 400px;">Select an Itinerary to View or Create a New Itinerary    <i class="fa fa-arrow-circle-up"></i></h2>
+            </div>
+            <div class="list-group" id="itinerary-body-events">
+              <div id="current-event">
+              </div>
+            </div>
+          <!-- Closing for itinerary container -->
+          </div>
+        <!-- Closing tag for #main div -->
+        </div>
+      <!-- Closing tag for #row div -->
+      </div>
+
+
+    <!-- Closing tag for #container div -->
+    </div>
+
+  <div id="footer" class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container">
           <div class="row">
-              <div class="col-sm-12 text-center"> -->
+              <div class="col-sm-12 text-center">
                   <p>Max Krieg | 2015</p>
                   <p>Created during General Assembly Web Development Immersive course.</p>
-<!--               </div>
+              </div>
           </div>
-      </div> -->
+      </div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

@@ -6,6 +6,15 @@ POSITIONING
 body {
   padding-top: 55px;
   margin: 0;
+  min-height: 1000px;
+}
+
+.modal-open {
+    overflow: scroll;
+}
+
+.modal-body {
+  height: 100%;
 }
 
 .jumbotron {
@@ -14,7 +23,8 @@ body {
 }
 
 .shrink {
-  height: 150px;
+  margin-top: -20px;
+  height: 190px;
 }
 
 #home-page-headers {
@@ -38,7 +48,7 @@ body {
 }
 
 /* Main: Itinerary View */
-#main {}
+
 /*  min-height: 100%;
   height: auto !important;
   height: 100%;
@@ -83,26 +93,12 @@ body {
   height: 100%;
 }
 
-/* Leftbar 1: Itinerary List */
-
-/* Leftbar 2: Create New Event */
-#create-event-header {
-  margin-top: 30px;
-}
-
-#event-submit-btn {
-  margin-bottom: 20px;
-}
-
 
 #footer{
-  height: 100px;
+  height: 55px;
   text-align: center;
 /*  padding: 20px 0;*/
 }
-
-
-
 
 /********************
 STYLING

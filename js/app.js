@@ -26,8 +26,6 @@ $(document).ready(function() {
   $('#register').on('click', function(e) {
     e.preventDefault();
     userLogin.createUser();
-    $('#registerModal').removeClass('show');
-    $('#loginModal').hide().addClass('show').fadeIn(350);
   });
 
   $('.cancel-btn, #x-btn').click(function(e) {
@@ -90,7 +88,8 @@ $(document).ready(function() {
   ////////////////////////////////////////////////////////////////////////////
 
   // Hide certains elements on page load:
-  ($itineraryBtnContainer, $leftbarCreateEvent, $renameItineraryContainer).hide();
+  ($itineraryBtnContainer, $renameItineraryContainer).hide();
+  $leftbarCreateEvent.removeClass('show');
 
   // Show Selected Itinerary :: Inserts Itinerary ID into Header
   $itinerariesList.on('click', $itineraryListItem, function(e) {
@@ -117,7 +116,7 @@ $(document).ready(function() {
   // Add Event Btn: Shows Create Event Form, Hides Itinerary List
   $addEventBtn.click(function(e) {
     e.preventDefault();
-    $leftbarCreateEvent.fadeIn(500);
+    $leftbarCreateEvent.addClass('show');
   });
 
   // Create New Itinerary
@@ -161,7 +160,7 @@ $(document).ready(function() {
   // Create Event
   $eventSubmitBtn.click(function(e) {
     e.preventDefault();
-    $leftbarCreateEvent.hide();
+    $leftbarCreateEvent.removeClass('show');
     itineraryEvents.createEvent($eventTitleInput, $eventDateInput, $eventStartInput, $eventEndInput, $eventLocationInput, $eventAttendeesInput, $eventDescInput, $imageInput, $itineraryEvents);
     setTimeout(function() {
       $allInputForms.val("");
@@ -171,7 +170,7 @@ $(document).ready(function() {
   // Cancel Event Btn: Show itineraries-list, hide create event form
   $eventCancelBtn.click(function(e) {
     e.preventDefault();
-    $leftbarCreateEvent.hide();
+    $leftbarCreateEvent.removeClass('show');
   });
 
   // Delete Event

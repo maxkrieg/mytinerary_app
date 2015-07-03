@@ -20,7 +20,7 @@ MyTinerary.Login = (function() {
         localStorage.getItem('token');
         $('#loginModal').removeClass('show');
         itineraryList.getItineraryListHandler($itinerariesList);
-        $('#itinerary-btn-container, #leftbar-create-event, #rename-itinerary-container, #login-nav-btn, .register-btn, #home-page-elements').hide();
+        $('#itinerary-btn-container, #leftbar-create-event, #rename-itinerary-container, #login-nav-btn, .register-btn, #home-page-headers').hide();
         $('#main-page, #itineraries-list-dropdown, #leftbar-itineraries-list').show();
         $('.jumbotron').addClass('shrink');
       })
@@ -49,6 +49,8 @@ MyTinerary.Login = (function() {
     })
       .done(function() {
         console.log("success: Create new user.");
+        $('#registerModal').removeClass('show');
+        $('#loginModal').addClass('show').hide().fadeIn(350);
       })
       .fail(function() {
         console.log("error creating new user");
