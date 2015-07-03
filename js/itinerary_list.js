@@ -1,4 +1,4 @@
-var coreDomain = 'http://localhost:3000';
+var coreDomain = 'https://afternoon-shore-8644.herokuapp.com/';
 
 var MyTinerary = MyTinerary || {};
 MyTinerary.ItineraryList = (function() {
