@@ -5,11 +5,16 @@ POSITIONING
 
 body {
   padding-top: 55px;
+  margin: 0;
 }
 
 .jumbotron {
   padding-left: 20px;
-  height: 400px;
+  height: 350px;
+}
+
+.shrink {
+  height: 150px;
 }
 
 #home-page-headers {
@@ -21,9 +26,11 @@ body {
   text-align: center;
 }
 
-.container {
+#main-page {
+  min-height: 100%;
   height: 100%;
-  margin-bottom: 50px;
+  margin: 0 auto -100px;
+  padding: 0 0 100px;
 }
 
 .row {
@@ -31,9 +38,12 @@ body {
 }
 
 /* Main: Itinerary View */
-#main {
+#main {}
+/*  min-height: 100%;
+  height: auto !important;
   height: 100%;
-}
+  margin: 0 auto -100px;
+}*/
 
 #itinerary-btn-container {
   margin-top: 20px
@@ -75,15 +85,6 @@ body {
 
 /* Leftbar 1: Itinerary List */
 
-/*#itineraries-list-header {
-  margin-top: 20px;
-}*/
-
-#itinerary-create-btn {
-/*  margin-bottom: 20px;*/
-}
-
-
 /* Leftbar 2: Create New Event */
 #create-event-header {
   margin-top: 30px;
@@ -93,9 +94,13 @@ body {
   margin-bottom: 20px;
 }
 
-#footer {
+
+#footer{
+  height: 100px;
   text-align: center;
+/*  padding: 20px 0;*/
 }
+
 
 
 
@@ -140,15 +145,18 @@ body {
   font-weight: bold;
 }
 
-/*#main {
-  color: #2c3e50;
-}*/
-
 .btn {
   border: none;
   box-shadow: 0px 3px lightgrey;
   color: white;
   background: #c0392b;
+}
+
+#itinerary-create-btn {
+  background-color: lightgrey;
+  box-shadow: 0px 3px grey;
+  color: black;
+  margin: 0;
 }
 
 .btn:hover {
@@ -166,6 +174,8 @@ body {
   margin-top: 2px;
 }
 
+
+
 img {
   box-shadow: 2px 2px grey;
 }
@@ -174,7 +184,7 @@ img {
 #footer {
   color: #6D6D6D;
   background: #E9E9E9;
-  padding: 20px 0;
+
 }
 
 

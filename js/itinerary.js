@@ -24,10 +24,17 @@ MyTinerary.Itinerary = (function() {
       data: itineraryData,
     })
     // Once complete, run the itineraryListHandler function to render updated list of itineraries
-    .done(function() {
+    .done(function(response) {
       console.log('success: POSTed new itinerary');
       itineraryList.getItineraryListHandler($itinerariesList);
       $itineraryNameInput.val("");
+      var eventsUrl = coreDomain + '/itineraries/' + response.id + '/events'
+      var itineraryName = response.name
+      var itineraryId = response.id
+      console.log(itineraryName + itineraryId);
+      $('#itinerary-header-name').html("").hide().append(_renderItineraryName(itineraryName, itineraryId)).fadeIn(2000);
+      $('#itinerary-btn-container').fadeIn(1000);
+      itineraryEvents.getEvents(eventsUrl, $('#itinerary-body-events'));
     })
       .fail(function() {
         console.log("error");
@@ -60,7 +67,7 @@ MyTinerary.Itinerary = (function() {
   // Handler for deleting itinerary from DB
   var _deleteItineraryHandler = function($itineraryEvents, $itineraryHeader, $itinerariesList) {
 
-    var placeholderHeader = '<h2 style="font-weight: bold">Select an Itinerary to View</h2>';
+    var placeholderHeader = '<h2 style="font-weight: bold; margin-bottom: 350px;">Select an Itinerary to View</h2>';
 
     $.ajax({
       headers: {
@@ -73,7 +80,7 @@ MyTinerary.Itinerary = (function() {
         console.log("success: deleted itinerary");
         $itineraryEvents.html("");
         $itineraryHeader.html("").hide().append(placeholderHeader).fadeIn(400);
-        // itineraryList.getItineraryListHandler($itinerariesList);
+        $('#itinerary-btn-container').fadeOut(500);
         itineraryList.getItineraryListHandler($itinerariesList);
       })
       .fail(function() {

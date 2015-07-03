@@ -20,8 +20,9 @@ MyTinerary.Login = (function() {
         localStorage.getItem('token');
         $('#loginModal').removeClass('show');
         itineraryList.getItineraryListHandler($itinerariesList);
-        $('#itinerary-btn-container, #leftbar-create-event, #rename-itinerary-container, #login-nav-btn, .register-btn, #home-page-headers').hide();
+        $('#itinerary-btn-container, #leftbar-create-event, #rename-itinerary-container, #login-nav-btn, .register-btn, #home-page-elements').hide();
         $('#main-page, #itineraries-list-dropdown, #leftbar-itineraries-list').show();
+        $('.jumbotron').addClass('shrink');
       })
       .fail(function(jqxhr, textStatus, errorThrown) {
         console.log(textStatus);
@@ -30,14 +31,13 @@ MyTinerary.Login = (function() {
   };
 
   var _createUserHandler = function() {
-
     var registerUrl = coreDomain + '/register';
     var newUser = {
       user: {
-        first_name: $firstName.val(),
-        last_name: $lastName.val(),
-        email: $email.val(),
-        password: $password.val()
+        first_name: $('#first-name').val(),
+        last_name: $('#last-name').val(),
+        email: $('#register-email').val(),
+        password: $('#register-password').val()
       }
     };
 
@@ -55,12 +55,9 @@ MyTinerary.Login = (function() {
       });
   };
 
-  var _renderUserName = function() {
-
-  };
-
   return {
-    authenticateUser: _authenticateUser
+    authenticateUser: _authenticateUser,
+    createUser: _createUserHandler
   };
 
 })();

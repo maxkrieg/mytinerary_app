@@ -23,6 +23,13 @@ $(document).ready(function() {
     userLogin.authenticateUser($itinerariesList);
   });
 
+  $('#register').on('click', function(e) {
+    e.preventDefault();
+    userLogin.createUser();
+    $('#registerModal').removeClass('show');
+    $('#loginModal').hide().addClass('show').fadeIn(350);
+  });
+
   $('.cancel-btn, #x-btn').click(function(e) {
     e.preventDefault();
     $('#loginModal, #registerModal').removeClass('show');
