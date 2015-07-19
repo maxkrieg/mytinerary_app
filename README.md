@@ -6,7 +6,7 @@
 
 mytinerary is a simple itinerary builder app that allows you to create itineraries for any trip, retreat, conference, etc.  Events can be added with pictures and the output is a nice layout for your itinerary.
 
-All JavaScript lives in the js directory, CSS in styles.  This app was built during the Web Development Immersive course at General Assembly.  Users are not yet able to edit existing events (only delete them).  This is a feature that will be added in the future.
+All JavaScript lives in the js directory, CSS in styles.  This app was built during the Web Development Immersive course at General Assembly.  Users are not yet able to edit existing events (only delete them).  This is a feature that will be added in the future.  A testing suite has not been added but is in the process of being implemented.
 
 ### User Stories/Features
 ---------------
